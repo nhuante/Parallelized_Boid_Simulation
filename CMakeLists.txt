@@ -1,19 +1,22 @@
 cmake_minimum_required(VERSION 3.10)
-project(BoidsSim)
+project(ParallelizedBoids CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Enable OpenMP if available (optional)
-find_package(OpenMP)
-if(OpenMP_CXX_FOUND)
-    target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_CXX)
-endif()
 
-# Find SDL2
-find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS})
+# Tell CMake where the source files live
+set(SRC_DIR "${PROJECT_SOURCE_DIR}/src")
 
-file(GLOB SOURCES "src/*.cpp")
 
-add_executable(BoidsSim ${SOURCES})
-target_link_libraries(BoidsSim ${SDL2_LIBRARIES})
+add_executable(BoidsSim
+    ${SRC_DIR}/boid.hpp
+    ${SRC_DIR}/renderer.hpp
+    ${SRC_DIR}/renderer.cpp
+    ${SRC_DIR}/simulation_config.hpp
+    ${SRC_DIR}/simulation_state.hpp
+    ${SRC_DIR}/simulation.hpp
+    ${SRC_DIR}/simulation.cpp
+    ${SRC_DIR}/neighbor_search.hpp
+    ${SRC_DIR}/naiive_neighbor_search.hpp
+    ${SRC_DIR}/main.cpp
+)
