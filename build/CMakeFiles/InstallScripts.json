@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"//wsl.localhost/Ubuntu/home/nhuante/hpc/Parallelized_Boid_Simulation/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
