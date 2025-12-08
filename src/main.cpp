@@ -37,6 +37,7 @@ void print_simulation_controls_and_state() {
     std::cout << "[ G ] - Increase Number of Boids\n";
     std::cout << "[ B ] - Decrease Number of Boids\n";
     std::cout << "[ ESC ] - Quit Simulation\n";
+    std::cout << "[ SPACE ] - Reset Simulation\n";
     std::cout << "=============================================================\n";
 
     if (simulation_config.PAUSED){
