@@ -7,8 +7,29 @@
 #include <iostream>
 using namespace std;
 
+void welcome_message() {
+    std::cout << "=========================================\n";
+    std::cout << "        Boid Simulation Controls         \n";
+    std::cout << "=========================================\n";
+    std::cout << "[ P ] - Pause/Unpause Simulation\n";
+    std::cout << "[ D ] - Show/Hide Simulation Stats\n";
+    std::cout << "[ + ] - Increase Boid Speed\n";
+    std::cout << "[ - ] - Decrease Boid Speed\n";
+    std::cout << "[ R ] - Increase Perception Radius\n";
+    std::cout << "[ F ] - Decrease Perception Radius\n";
+    std::cout << "[ ESC ] - Quit Simulation\n";
+    std::cout << "=========================================\n\n";
 
-void handle_input(const SDL_Event& event, bool& paused, bool& show_stats, float& speed_multiplier) {
+    std::cout << "=========================================\n";
+    std::cout << "        Initial Simulation State         \n";
+    std::cout << "=========================================\n";
+    std::cout << "Number of Boids: " << simulation_config.NUM_BOIDS << "\n";
+    std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
+    std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
+    std::cout << "=========================================\n";
+}
+
+void handle_input(const SDL_Event& event, bool& paused, bool& show_stats) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
             // [ P ] - pause/unpause      
@@ -24,13 +45,23 @@ void handle_input(const SDL_Event& event, bool& paused, bool& show_stats, float&
             // [ + ] - increase speed    
             case SDLK_PLUS: 
             case SDLK_EQUALS:                     
-                speed_multiplier += 0.1f;
-                std::cout << "Speed Multiplier: " << speed_multiplier << "x\n";
+                simulation_config.SPEED += simulation_config.SPEED_CHANGE_STEP;
+                std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
                 break;
-            // [ - ] - decrease speed
+            // [ - ] - decrease speed (min 0.1x)
             case SDLK_MINUS:                    
-                speed_multiplier = std::max(0.1f, speed_multiplier - 0.1f);
-                std::cout << "Speed Multiplier: " << speed_multiplier << "x\n";
+                simulation_config.SPEED = std::max(0.1f, simulation_config.SPEED - simulation_config.SPEED_CHANGE_STEP);
+                std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
+                break;
+            // [ R ] - increase perception radius
+            case SDLK_r:                     
+                simulation_config.PERCEPTION_RADIUS += simulation_config.PERCEPTION_RADIUS_STEP;
+                std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
+                break;
+            // [ F ] - decrease perception radius (min 1.0f)
+            case SDLK_f:                     
+                simulation_config.PERCEPTION_RADIUS = std::max(1.0f, simulation_config.PERCEPTION_RADIUS - simulation_config.PERCEPTION_RADIUS_STEP);
+                std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
                 break;
             default:
                 break;
@@ -43,7 +74,6 @@ int main() {
     // game parameters 
     bool paused = false; 
     bool show_stats = false; 
-    float speed_multiplier = 1.0f;
 
     // initialize the renderer
     std::cout << "Initializing Renderer...\n" ;
@@ -83,6 +113,9 @@ int main() {
     SDL_Event event;
     Uint32 last = SDL_GetTicks();
 
+    // welcome message 
+    welcome_message(); 
+
     std::cout << "\n\nStarting Simulation...\n" ;
     while (running) {
         // handle events
@@ -92,7 +125,7 @@ int main() {
                 running = false;
             }
             // handle other input
-            handle_input(event, paused, show_stats, speed_multiplier);
+            handle_input(event, paused, show_stats);
         }
 
         if (paused) {
@@ -103,7 +136,7 @@ int main() {
 
         // calc the timestep
         Uint32 now = SDL_GetTicks();
-        float dt = ((now - last) / 1000.0f) * simulation_config.SPEED_UP_RATE * speed_multiplier; // delta time in seconds
+        float dt = ((now - last) / 1000.0f) * simulation_config.SPEED; // delta time in seconds
         // std::cout << "\tdt = " << dt << "\n";
         last = now;
         // update simulation

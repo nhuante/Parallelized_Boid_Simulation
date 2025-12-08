@@ -7,24 +7,35 @@ settings for the simulation
 #pragma once
 
 struct SimulationConfig {
-    // boid behavior parameters
+
+    // NUMBER OF BOIDS 
     int NUM_BOIDS = 1000;
-    float MAX_SPEED = 5.0f;
-    // float SPEED_UP_RATE = 3.0f;
-    float SPEED_UP_RATE = 8.0f;
+
+    /* ================= BOID MOVEMENT PARAMETERS ================= */
+    // SPEED
+    float MAX_SPEED = 150.0f;
+    float SPEED = 2.0f;
+    float SPEED_CHANGE_STEP = 0.5f;
+
+    // PERCEPTION RADIUS 
+    float PERCEPTION_RADIUS_STEP = 2.0f;
     float PERCEPTION_RADIUS = 40.0f;
 
+    // STEERING WEIGHTS
     float ALIGNMENT_WEIGHT = 0.25f;
     float COHESION_WEIGHT = 0.10f;
     float SEPARATION_WEIGHT = 1.50f;
 
-    // boid appearance parameters
+
+    /* ================= BOID APPEARANCE PARAMETERS ================= */
     int BOID_WIDTH = 4;
     int BOID_HEIGHT = 4;
 
     // triangle boid sizes 
     float BOID_TRIANGLE_SIZE = 5.0f;
-    
+
+
+    /* ================= SIMULATION PARAMETERS ================= */
     // widow size
     int WINDOW_WIDTH = 800;
     int WINDOW_HEIGHT = 600;
