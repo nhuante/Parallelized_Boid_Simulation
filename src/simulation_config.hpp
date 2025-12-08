@@ -47,6 +47,7 @@ struct SimulationConfig {
 
     // grid parameters for neighbor search
     float GRID_CELL_SIZE = 60.0f;
+    float GRID_CELL_SIZE_STEP = 5.0f;
     bool SHOW_GRID = false;
 
     bool PAUSED = false;

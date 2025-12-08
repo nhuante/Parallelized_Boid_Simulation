@@ -22,6 +22,8 @@ void print_simulation_controls_and_state() {
     std::cout << "[ P ] - Pause/Unpause Simulation\n";
     std::cout << "[ Q ] - Show/Hide Simulation Stats\n";
     std::cout << "[ W ] - Toggle Grid Display\n";
+    std::cout << "[ J ] - Increase Grid Cell Size\n";
+    std::cout << "[ M ] - Decrease Grid Cell Size\n";
     std::cout << "[ + ] - Increase Boid Speed\n";
     std::cout << "[ - ] - Decrease Boid Speed\n";
     std::cout << "[ A ] - Increase Perception Radius\n";
@@ -44,9 +46,9 @@ void print_simulation_controls_and_state() {
     }
     
     if (simulation_config.SHOW_STATS){
-        std::cout << (" [STATS VISIBLE]\n");
+        std::cout << (" [STATS VISIBLE]");
     } else {
-        std::cout << (" [STATS HIDDEN]\n");
+        std::cout << (" [STATS HIDDEN]");
     }
     if (simulation_config.SHOW_GRID){
         std::cout << (" [GRID VISIBLE]\n");
@@ -64,6 +66,8 @@ void print_simulation_controls_and_state() {
     std::cout << "Alignment Weight: " << simulation_config.ALIGNMENT_WEIGHT << "\n";
     std::cout << "Cohesion Weight: " << simulation_config.COHESION_WEIGHT << "\n";
     std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
+
+    std::cout << "\nGrid Cell Size: " << simulation_config.GRID_CELL_SIZE << "\n";
     std::cout << "===============================================\n";
 }
 
@@ -92,6 +96,14 @@ void handle_input(const SDL_Event& event, SimulationState& state) {
             // [ W ] - toggle grid display
             case SDLK_w:
                 simulation_config.SHOW_GRID = !simulation_config.SHOW_GRID;
+                break;
+            // [ J ] - increase grid cell size
+            case SDLK_j:                     
+                simulation_config.GRID_CELL_SIZE = std::min(simulation_config.GRID_CELL_SIZE + simulation_config.GRID_CELL_SIZE_STEP, simulation_config.WINDOW_HEIGHT / 2.0f);
+                break;
+            // [ M ] - decrease grid cell size (min 5)
+            case SDLK_m:                     
+                simulation_config.GRID_CELL_SIZE = std::max(5.0f, simulation_config.GRID_CELL_SIZE - simulation_config.GRID_CELL_SIZE_STEP);
                 break;
             // ================= SPEED CONTROLS =================
             // [ + ] - increase speed    
