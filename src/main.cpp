@@ -25,14 +25,16 @@ void print_simulation_controls_and_state() {
     std::cout << "[ - ] - Decrease Boid Speed\n";
     std::cout << "[ A ] - Increase Perception Radius\n";
     std::cout << "[ R ] - Decrease Perception Radius\n";
-    std::cout << "[ S ] - Increase Alignment Weight\n";
+    std::cout << "[ S ] - Increase Alignment Weight (Higher means boids align more)\n";
     std::cout << "[ X ] - Decrease Alignment Weight\n";
-    std::cout << "[ D ] - Increase Cohesion Weight\n";
+    std::cout << "[ D ] - Increase Cohesion Weight (Higher means boids pull towards each other more)\n";
     std::cout << "[ C ] - Decrease Cohesion Weight\n";
-    std::cout << "[ F ] - Increase Separation Weight\n";
+    std::cout << "[ F ] - Increase Separation Weight (Higher means boids avoid each other more)\n";
     std::cout << "[ V ] - Decrease Separation Weight\n";
+    std::cout << "[ G ] - Increase Number of Boids\n";
+    std::cout << "[ B ] - Decrease Number of Boids\n";
     std::cout << "[ ESC ] - Quit Simulation\n";
-    std::cout << "=========================================\n\n";
+    std::cout << "=========================================\n";
 
     if (simulation_config.PAUSED){
         std::cout << ("    [SIMULATION PAUSED]");
@@ -41,9 +43,9 @@ void print_simulation_controls_and_state() {
     }
     
     if (simulation_config.SHOW_STATS){
-        std::cout << ("    [STATS VISIBLE]\n\n");
+        std::cout << ("    [STATS VISIBLE]\n");
     } else {
-        std::cout << ("    [STATS HIDDEN]\n\n");
+        std::cout << ("    [STATS HIDDEN]\n");
     }
 
     std::cout << "=========================================\n";
@@ -69,74 +71,85 @@ void maybe_print_state() {
 }
 
 
-void handle_input(const SDL_Event& event) {
+void handle_input(const SDL_Event& event, SimulationState& state) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
             // [ P ] - pause/unpause      
             case SDLK_p:                     
                 simulation_config.PAUSED = !simulation_config.PAUSED;
-                // std::cout << (paused ? "Simulation Paused\n" : "Simulation Resumed\n");
                 break;
              // [ Q ] - show/hide stats 
             case SDLK_q:                         
                 simulation_config.SHOW_STATS = !simulation_config.SHOW_STATS;
-                // std::cout << (show_stats ? "Showing Stats\n" : "Hiding Stats\n");
                 break;          
             // ================= SPEED CONTROLS =================
             // [ + ] - increase speed    
             case SDLK_PLUS: 
             case SDLK_EQUALS:                     
                 simulation_config.SPEED += simulation_config.SPEED_CHANGE_STEP;
-                // std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
                 break;
             // [ - ] - decrease speed (min 0.1x)
             case SDLK_MINUS:                    
                 simulation_config.SPEED = std::max(0.1f, simulation_config.SPEED - simulation_config.SPEED_CHANGE_STEP);
-                // std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
                 break;
             // ================= BEHAVIOR CONTROLS =================
             // [ A ] - increase perception radius
             case SDLK_a:                     
                 simulation_config.PERCEPTION_RADIUS += simulation_config.PERCEPTION_RADIUS_STEP;
-                // std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
                 break;
             // [ Z ] - decrease perception radius (min 1.0f)
             case SDLK_z:                     
                 simulation_config.PERCEPTION_RADIUS = std::max(1.0f, simulation_config.PERCEPTION_RADIUS - simulation_config.PERCEPTION_RADIUS_STEP);
-                // std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
                 break;
             // ================= ALIGNMENT WEIGHT CONTROLS =================
             // [ S ] - increase alignment weight
             case SDLK_s:                     
                 simulation_config.ALIGNMENT_WEIGHT += simulation_config.ALIGNMENT_WEIGHT_STEP;
-                // std::cout << "Alignment Weight: " << simulation_config.ALIGNMENT_WEIGHT << "\n";
                 break;
             // [ X ] - decrease alignment weight (min 0.0f)
             case SDLK_x:                     
                 simulation_config.ALIGNMENT_WEIGHT = std::max(0.0f, simulation_config.ALIGNMENT_WEIGHT - simulation_config.ALIGNMENT_WEIGHT_STEP);
-                // std::cout << "Alignment Weight: " << simulation_config.ALIGNMENT_WEIGHT << "\n";
                 break;
             // ================= COHESION WEIGHT CONTROLS =================
             // [ D ] - increase cohesion weight
             case SDLK_d:                     
                 simulation_config.COHESION_WEIGHT += simulation_config.COHESION_WEIGHT_STEP;
-                // std::cout << "Cohesion Weight: " << simulation_config.COHESION_WEIGHT << "\n";
                 break;
             // [ C ] - decrease cohesion weight (min 0.0f)
             case SDLK_c:                     
                 simulation_config.COHESION_WEIGHT = std::max(0.0f, simulation_config.COHESION_WEIGHT - simulation_config.COHESION_WEIGHT_STEP);
-                // std::cout << "Cohesion Weight: " << simulation_config.COHESION_WEIGHT << "\n";
                 break;
             // ================= SEPARATION WEIGHT CONTROLS =================
             // [ F ] - increase separation weight
             case SDLK_f:                     
                 simulation_config.SEPARATION_WEIGHT += simulation_config.SEPARATION_WEIGHT_STEP;
-                // std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
                 break;
             // [ V ] - decrease separation weight (min 0.0f)
             case SDLK_v:
                 simulation_config.SEPARATION_WEIGHT = std::max(0.0f, simulation_config.SEPARATION_WEIGHT - simulation_config.SEPARATION_WEIGHT_STEP);
-                // std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
+                break;
+            // ================= NUMBER OF BOIDS CONTROLS =================
+            // [ G ] - increase number of boids
+            case SDLK_g:                     
+                simulation_config.NUM_BOIDS += simulation_config.NUM_BOIDS_STEP; 
+                for (int i = 0; i < simulation_config.NUM_BOIDS_STEP; i++) {
+                    Boid bird; 
+                    // random position within window bounds
+                    bird.x = rand() % simulation_config.WINDOW_WIDTH;
+                    bird.y = rand() % simulation_config.WINDOW_HEIGHT;
+                    // random velocity between -0.5 and 0.5
+                    bird.vx = ((rand() % 100) / 100.0f) - 0.5f;
+                    bird.vy = ((rand() % 100) / 100.0f) - 0.5f;
+                    // add bird 
+                    state.boids.push_back(bird); 
+                }
+                break;
+            // [ B ] - decrease number of boids
+            case SDLK_b:
+                simulation_config.NUM_BOIDS = std::max(1, simulation_config.NUM_BOIDS - simulation_config.NUM_BOIDS_STEP); 
+                if (state.boids.size() > simulation_config.NUM_BOIDS) {
+                    state.boids.resize(simulation_config.NUM_BOIDS); 
+                }
                 break;
             
             default:
@@ -198,7 +211,7 @@ int main() {
                 running = false;
             }
             // handle other input
-            handle_input(event);
+            handle_input(event, state);
         }
 
         if (simulation_config.PAUSED) {
