@@ -16,9 +16,9 @@ void print_simulation_controls_and_state() {
     system("cls");
     // std::cout << "\033[H\033[J";   // Move cursor home + clear screen (fast, no flicker)
 
-    std::cout << "===============================================\n";
-    std::cout << "              Boid Simulation Controls         \n";
-    std::cout << "===============================================\n";
+    std::cout << "=============================================================\n";
+    std::cout << "                    Boid Simulation Controls                 \n";
+    std::cout << "=============================================================\n";
     std::cout << "[ P ] - Pause/Unpause Simulation\n";
     std::cout << "[ Q ] - Show/Hide Simulation Stats\n";
     std::cout << "[ W ] - Toggle Grid Display\n";
@@ -37,7 +37,7 @@ void print_simulation_controls_and_state() {
     std::cout << "[ G ] - Increase Number of Boids\n";
     std::cout << "[ B ] - Decrease Number of Boids\n";
     std::cout << "[ ESC ] - Quit Simulation\n";
-    std::cout << "===============================================\n";
+    std::cout << "=============================================================\n";
 
     if (simulation_config.PAUSED){
         std::cout << (" [SIMULATION PAUSED]");
@@ -56,9 +56,9 @@ void print_simulation_controls_and_state() {
         std::cout << (" [GRID HIDDEN]\n");
     }
 
-    std::cout << "===============================================\n";
-    std::cout << "              CURRENT Simulation State         \n";
-    std::cout << "===============================================\n";
+    std::cout << "=============================================================\n";
+    std::cout << "                     CURRENT Simulation State                \n";
+    std::cout << "=============================================================\n";
     std::cout << "Number of Boids: " << simulation_config.NUM_BOIDS << "\n";
     std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
     std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n\n";
@@ -68,7 +68,7 @@ void print_simulation_controls_and_state() {
     std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
 
     std::cout << "\nGrid Cell Size: " << simulation_config.GRID_CELL_SIZE << "\n";
-    std::cout << "===============================================\n";
+    std::cout << "=============================================================\n";
 }
 
 void maybe_print_state() {
