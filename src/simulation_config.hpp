@@ -47,10 +47,13 @@ struct SimulationConfig {
 
     // grid parameters for neighbor search
     float GRID_CELL_SIZE = 60.0f;
+    bool SHOW_GRID = false;
 
     bool PAUSED = false;
     bool SHOW_STATS = false;
 
+
+    /* ================= COMPARISON OPERATORS ================= */
     bool operator==(const SimulationConfig& other) const {
         return NUM_BOIDS == other.NUM_BOIDS &&
                MAX_SPEED == other.MAX_SPEED &&
@@ -71,7 +74,9 @@ struct SimulationConfig {
                WINDOW_HEIGHT == other.WINDOW_HEIGHT &&
                GRID_CELL_SIZE == other.GRID_CELL_SIZE &&
                PAUSED == other.PAUSED &&
-               SHOW_STATS == other.SHOW_STATS;
+               SHOW_STATS == other.SHOW_STATS &&
+               SHOW_GRID == other.SHOW_GRID
+               ;
     }
 
     bool operator!=(const SimulationConfig& other) const {

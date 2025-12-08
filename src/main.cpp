@@ -16,11 +16,12 @@ void print_simulation_controls_and_state() {
     system("cls");
     // std::cout << "\033[H\033[J";   // Move cursor home + clear screen (fast, no flicker)
 
-    std::cout << "=========================================\n";
-    std::cout << "        Boid Simulation Controls         \n";
-    std::cout << "=========================================\n";
+    std::cout << "===============================================\n";
+    std::cout << "              Boid Simulation Controls         \n";
+    std::cout << "===============================================\n";
     std::cout << "[ P ] - Pause/Unpause Simulation\n";
     std::cout << "[ Q ] - Show/Hide Simulation Stats\n";
+    std::cout << "[ W ] - Toggle Grid Display\n";
     std::cout << "[ + ] - Increase Boid Speed\n";
     std::cout << "[ - ] - Decrease Boid Speed\n";
     std::cout << "[ A ] - Increase Perception Radius\n";
@@ -34,23 +35,28 @@ void print_simulation_controls_and_state() {
     std::cout << "[ G ] - Increase Number of Boids\n";
     std::cout << "[ B ] - Decrease Number of Boids\n";
     std::cout << "[ ESC ] - Quit Simulation\n";
-    std::cout << "=========================================\n";
+    std::cout << "===============================================\n";
 
     if (simulation_config.PAUSED){
-        std::cout << ("    [SIMULATION PAUSED]");
+        std::cout << (" [SIMULATION PAUSED]");
     } else {
-        std::cout << ("    [SIMULATION RUNNING]");
+        std::cout << (" [SIMULATION RUNNING]");
     }
     
     if (simulation_config.SHOW_STATS){
-        std::cout << ("    [STATS VISIBLE]\n");
+        std::cout << (" [STATS VISIBLE]\n");
     } else {
-        std::cout << ("    [STATS HIDDEN]\n");
+        std::cout << (" [STATS HIDDEN]\n");
+    }
+    if (simulation_config.SHOW_GRID){
+        std::cout << (" [GRID VISIBLE]\n");
+    } else {
+        std::cout << (" [GRID HIDDEN]\n");
     }
 
-    std::cout << "=========================================\n";
-    std::cout << "        CURRENT Simulation State         \n";
-    std::cout << "=========================================\n";
+    std::cout << "===============================================\n";
+    std::cout << "              CURRENT Simulation State         \n";
+    std::cout << "===============================================\n";
     std::cout << "Number of Boids: " << simulation_config.NUM_BOIDS << "\n";
     std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
     std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n\n";
@@ -58,7 +64,7 @@ void print_simulation_controls_and_state() {
     std::cout << "Alignment Weight: " << simulation_config.ALIGNMENT_WEIGHT << "\n";
     std::cout << "Cohesion Weight: " << simulation_config.COHESION_WEIGHT << "\n";
     std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
-    std::cout << "=========================================\n";
+    std::cout << "===============================================\n";
 }
 
 void maybe_print_state() {
@@ -74,14 +80,19 @@ void maybe_print_state() {
 void handle_input(const SDL_Event& event, SimulationState& state) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
+            // ================= GENERAL CONTROLS =================
             // [ P ] - pause/unpause      
             case SDLK_p:                     
                 simulation_config.PAUSED = !simulation_config.PAUSED;
                 break;
-             // [ Q ] - show/hide stats 
+            // [ Q ] - show/hide stats 
             case SDLK_q:                         
                 simulation_config.SHOW_STATS = !simulation_config.SHOW_STATS;
                 break;          
+            // [ W ] - toggle grid display
+            case SDLK_w:
+                simulation_config.SHOW_GRID = !simulation_config.SHOW_GRID;
+                break;
             // ================= SPEED CONTROLS =================
             // [ + ] - increase speed    
             case SDLK_PLUS: 

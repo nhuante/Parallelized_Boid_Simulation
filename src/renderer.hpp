@@ -17,6 +17,7 @@ class Renderer {
         bool init(int width, int height);
         void render(const std::vector<Boid>& boids);
         void draw_boid(float x, float y, float angle, SDL_Color color);
+        void draw_grid();
         void cleanup();
 
 };

@@ -45,6 +45,11 @@ void Renderer::render(const std::vector<Boid>& boids) {
     //     SDL_RenderFillRect(renderer, &rect);
     // }
 
+    // draw grid if enabled
+    if (simulation_config.SHOW_GRID) {
+        draw_grid();
+    }
+
     // render boids as triangles
     for (const Boid& boid : boids){
         float angle = atan2(boid.vy, boid.vx) + M_PI / 2.0f; // add 90 degrees to point in direction of velocity
@@ -114,4 +119,22 @@ void Renderer::draw_boid(float x, float y, float angle, SDL_Color color) {
         SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
     }
 
+}
+
+void Renderer::draw_grid() {
+    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255); // dark gray grid lines
+
+    float cell_size = simulation_config.GRID_CELL_SIZE;
+    int width = simulation_config.WINDOW_WIDTH;
+    int height = simulation_config.WINDOW_HEIGHT;
+
+    // draw vertical lines
+    for (float x = 0; x <= width; x += cell_size) {
+        SDL_RenderDrawLine(renderer, x, 0, x, height);
+    }
+
+    // draw horizontal lines
+    for (float y = 0; y <= height; y += cell_size) {
+        SDL_RenderDrawLine(renderer, 0, y, width, y);
+    }
 }
