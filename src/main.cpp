@@ -7,74 +7,145 @@
 #include <iostream>
 using namespace std;
 
-void welcome_message() {
+
+SimulationConfig last_simulation_config = {};
+
+
+void print_simulation_controls_and_state() {
+    // // clear console (works on Windows)
+    system("cls");
+    // std::cout << "\033[H\033[J";   // Move cursor home + clear screen (fast, no flicker)
+
     std::cout << "=========================================\n";
     std::cout << "        Boid Simulation Controls         \n";
     std::cout << "=========================================\n";
     std::cout << "[ P ] - Pause/Unpause Simulation\n";
-    std::cout << "[ D ] - Show/Hide Simulation Stats\n";
+    std::cout << "[ Q ] - Show/Hide Simulation Stats\n";
     std::cout << "[ + ] - Increase Boid Speed\n";
     std::cout << "[ - ] - Decrease Boid Speed\n";
-    std::cout << "[ R ] - Increase Perception Radius\n";
-    std::cout << "[ F ] - Decrease Perception Radius\n";
+    std::cout << "[ A ] - Increase Perception Radius\n";
+    std::cout << "[ R ] - Decrease Perception Radius\n";
+    std::cout << "[ S ] - Increase Alignment Weight\n";
+    std::cout << "[ X ] - Decrease Alignment Weight\n";
+    std::cout << "[ D ] - Increase Cohesion Weight\n";
+    std::cout << "[ C ] - Decrease Cohesion Weight\n";
+    std::cout << "[ F ] - Increase Separation Weight\n";
+    std::cout << "[ V ] - Decrease Separation Weight\n";
     std::cout << "[ ESC ] - Quit Simulation\n";
     std::cout << "=========================================\n\n";
 
+    if (simulation_config.PAUSED){
+        std::cout << ("    [SIMULATION PAUSED]");
+    } else {
+        std::cout << ("    [SIMULATION RUNNING]");
+    }
+    
+    if (simulation_config.SHOW_STATS){
+        std::cout << ("    [STATS VISIBLE]\n\n");
+    } else {
+        std::cout << ("    [STATS HIDDEN]\n\n");
+    }
+
     std::cout << "=========================================\n";
-    std::cout << "        Initial Simulation State         \n";
+    std::cout << "        CURRENT Simulation State         \n";
     std::cout << "=========================================\n";
     std::cout << "Number of Boids: " << simulation_config.NUM_BOIDS << "\n";
     std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
-    std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
+    std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n\n";
+
+    std::cout << "Alignment Weight: " << simulation_config.ALIGNMENT_WEIGHT << "\n";
+    std::cout << "Cohesion Weight: " << simulation_config.COHESION_WEIGHT << "\n";
+    std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
     std::cout << "=========================================\n";
 }
 
-void handle_input(const SDL_Event& event, bool& paused, bool& show_stats) {
+void maybe_print_state() {
+    // check if any values in simulation_config have changed 
+    if (simulation_config != last_simulation_config) {
+        print_simulation_controls_and_state();
+        // update last known config
+        last_simulation_config = simulation_config;
+    }
+}
+
+
+void handle_input(const SDL_Event& event) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
             // [ P ] - pause/unpause      
             case SDLK_p:                     
-                paused = !paused;
-                std::cout << (paused ? "Simulation Paused\n" : "Simulation Resumed\n");
+                simulation_config.PAUSED = !simulation_config.PAUSED;
+                // std::cout << (paused ? "Simulation Paused\n" : "Simulation Resumed\n");
                 break;
-             // [ D ] - show/hide stats 
-            case SDLK_d:                         
-                show_stats = !show_stats;
-                std::cout << (show_stats ? "Showing Stats\n" : "Hiding Stats\n");
+             // [ Q ] - show/hide stats 
+            case SDLK_q:                         
+                simulation_config.SHOW_STATS = !simulation_config.SHOW_STATS;
+                // std::cout << (show_stats ? "Showing Stats\n" : "Hiding Stats\n");
                 break;          
+            // ================= SPEED CONTROLS =================
             // [ + ] - increase speed    
             case SDLK_PLUS: 
             case SDLK_EQUALS:                     
                 simulation_config.SPEED += simulation_config.SPEED_CHANGE_STEP;
-                std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
+                // std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
                 break;
             // [ - ] - decrease speed (min 0.1x)
             case SDLK_MINUS:                    
                 simulation_config.SPEED = std::max(0.1f, simulation_config.SPEED - simulation_config.SPEED_CHANGE_STEP);
-                std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
+                // std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
                 break;
-            // [ R ] - increase perception radius
-            case SDLK_r:                     
+            // ================= BEHAVIOR CONTROLS =================
+            // [ A ] - increase perception radius
+            case SDLK_a:                     
                 simulation_config.PERCEPTION_RADIUS += simulation_config.PERCEPTION_RADIUS_STEP;
-                std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
+                // std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
                 break;
-            // [ F ] - decrease perception radius (min 1.0f)
-            case SDLK_f:                     
+            // [ Z ] - decrease perception radius (min 1.0f)
+            case SDLK_z:                     
                 simulation_config.PERCEPTION_RADIUS = std::max(1.0f, simulation_config.PERCEPTION_RADIUS - simulation_config.PERCEPTION_RADIUS_STEP);
-                std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
+                // std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n";
                 break;
+            // ================= ALIGNMENT WEIGHT CONTROLS =================
+            // [ S ] - increase alignment weight
+            case SDLK_s:                     
+                simulation_config.ALIGNMENT_WEIGHT += simulation_config.ALIGNMENT_WEIGHT_STEP;
+                // std::cout << "Alignment Weight: " << simulation_config.ALIGNMENT_WEIGHT << "\n";
+                break;
+            // [ X ] - decrease alignment weight (min 0.0f)
+            case SDLK_x:                     
+                simulation_config.ALIGNMENT_WEIGHT = std::max(0.0f, simulation_config.ALIGNMENT_WEIGHT - simulation_config.ALIGNMENT_WEIGHT_STEP);
+                // std::cout << "Alignment Weight: " << simulation_config.ALIGNMENT_WEIGHT << "\n";
+                break;
+            // ================= COHESION WEIGHT CONTROLS =================
+            // [ D ] - increase cohesion weight
+            case SDLK_d:                     
+                simulation_config.COHESION_WEIGHT += simulation_config.COHESION_WEIGHT_STEP;
+                // std::cout << "Cohesion Weight: " << simulation_config.COHESION_WEIGHT << "\n";
+                break;
+            // [ C ] - decrease cohesion weight (min 0.0f)
+            case SDLK_c:                     
+                simulation_config.COHESION_WEIGHT = std::max(0.0f, simulation_config.COHESION_WEIGHT - simulation_config.COHESION_WEIGHT_STEP);
+                // std::cout << "Cohesion Weight: " << simulation_config.COHESION_WEIGHT << "\n";
+                break;
+            // ================= SEPARATION WEIGHT CONTROLS =================
+            // [ F ] - increase separation weight
+            case SDLK_f:                     
+                simulation_config.SEPARATION_WEIGHT += simulation_config.SEPARATION_WEIGHT_STEP;
+                // std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
+                break;
+            // [ V ] - decrease separation weight (min 0.0f)
+            case SDLK_v:
+                simulation_config.SEPARATION_WEIGHT = std::max(0.0f, simulation_config.SEPARATION_WEIGHT - simulation_config.SEPARATION_WEIGHT_STEP);
+                // std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
+                break;
+            
             default:
                 break;
         }
     }
 }
 
-int main() {
-
-    // game parameters 
-    bool paused = false; 
-    bool show_stats = false; 
-
+int main() { 
     // initialize the renderer
     std::cout << "Initializing Renderer...\n" ;
     Renderer renderer; 
@@ -113,11 +184,13 @@ int main() {
     SDL_Event event;
     Uint32 last = SDL_GetTicks();
 
-    // welcome message 
-    welcome_message(); 
 
     std::cout << "\n\nStarting Simulation...\n" ;
+    print_simulation_controls_and_state();
     while (running) {
+        // update and maybe print state if changed
+        maybe_print_state();
+
         // handle events
         while (SDL_PollEvent(&event)) { 
             // handle quit event
@@ -125,10 +198,10 @@ int main() {
                 running = false;
             }
             // handle other input
-            handle_input(event, paused, show_stats);
+            handle_input(event);
         }
 
-        if (paused) {
+        if (simulation_config.PAUSED) {
             // SDL_Delay(10); // sleep to reduce CPU usage when paused
             last = SDL_GetTicks(); // reset last time to prevent large dt jump
             continue;
