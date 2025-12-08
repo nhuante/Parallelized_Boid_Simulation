@@ -47,27 +47,27 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\msys64\mingw64\bin\cmake.exe
+CMAKE_COMMAND = "C:\Program Files\CMake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = C:\msys64\mingw64\bin\cmake.exe -E rm -f
+RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "\\wsl.localhost\Ubuntu\home\nhuante\hpc\Parallelized_Boid_Simulation"
+CMAKE_SOURCE_DIR = C:\Users\natal\Documents\Parallelized_Boid_Simulation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "\\wsl.localhost\Ubuntu\home\nhuante\hpc\Parallelized_Boid_Simulation\build"
+CMAKE_BINARY_DIR = C:\Users\natal\Documents\Parallelized_Boid_Simulation\build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available."
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
+	"C:\Program Files\CMake\bin\cmake-gui.exe" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "\\wsl.localhost\Ubuntu\home\nhuante\hpc\Parallelized_Boid_Simulation\build\CMakeFiles" "\\wsl.localhost\Ubuntu\home\nhuante\hpc\Parallelized_Boid_Simulation\build\\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\CMakeFiles C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "\\wsl.localhost\Ubuntu\home\nhuante\hpc\Parallelized_Boid_Simulation\build\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -200,6 +200,30 @@ src/simulation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/simulation.cpp.s
 .PHONY : src/simulation.cpp.s
 
+src/simulation_config.obj: src/simulation_config.cpp.obj
+.PHONY : src/simulation_config.obj
+
+# target to build an object file
+src/simulation_config.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj
+.PHONY : src/simulation_config.cpp.obj
+
+src/simulation_config.i: src/simulation_config.cpp.i
+.PHONY : src/simulation_config.i
+
+# target to preprocess a source file
+src/simulation_config.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.i
+.PHONY : src/simulation_config.cpp.i
+
+src/simulation_config.s: src/simulation_config.cpp.s
+.PHONY : src/simulation_config.s
+
+# target to generate assembly for a file
+src/simulation_config.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.s
+.PHONY : src/simulation_config.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -218,6 +242,9 @@ help:
 	@echo ... src/simulation.obj
 	@echo ... src/simulation.i
 	@echo ... src/simulation.s
+	@echo ... src/simulation_config.obj
+	@echo ... src/simulation_config.i
+	@echo ... src/simulation_config.s
 .PHONY : help
 
 

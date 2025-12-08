@@ -1,1 +1,1 @@
- C:/msys64/mingw64/lib/libSDL2main.a C:/msys64/mingw64/lib/libSDL2.dll.a -lshell32 -Wl,--undefined=WinMain -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+ -lmingw32 "C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/lib/libSDL2main.a" "C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/lib/libSDL2.dll.a" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

@@ -5,7 +5,6 @@
 #include "simulation_state.hpp"
 #include "neighbor_search.hpp"
 
-
 class Simulation {
     private:
         SimulationState state;

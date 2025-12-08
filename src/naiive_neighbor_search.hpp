@@ -8,7 +8,8 @@ Naiive Neighbor Search
 #pragma once
 #include "neighbor_search.hpp"
 #include "simulation_config.hpp"
-#include <cmmath>
+#include <cmath>
+
 
 
 class NaiiveNeighborSearch : public NeighborSearch {
@@ -37,4 +38,4 @@ class NaiiveNeighborSearch : public NeighborSearch {
             }
             return neighbors;
         }
-}
+};
