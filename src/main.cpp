@@ -80,8 +80,29 @@ void maybe_print_state() {
     }
 }
 
+void reset_simulation(SimulationState& state) {
+    // clear out all boids and reconstruct the array
+    state.boids.clear();
+    state.boids.reserve(simulation_config.NUM_BOIDS);
 
-void handle_input(const SDL_Event& event, SimulationState& state) {
+    // re-initialize boids with random positions and velocities
+    for (int i = 0; i < simulation_config.NUM_BOIDS; i++) {
+        Boid bird; 
+        // random position within window bounds
+        bird.x = rand() % simulation_config.WINDOW_WIDTH;
+        bird.y = rand() % simulation_config.WINDOW_HEIGHT;
+        // random velocity between -0.5 and 0.5
+        bird.vx = ((rand() % 100) / 100.0f) - 0.5f;
+        bird.vy = ((rand() % 100) / 100.0f) - 0.5f;
+        // add bird 
+        state.boids.push_back(bird);
+        // make sure simulation is not paused 
+        simulation_config.PAUSED = false;
+    }
+}
+
+
+void handle_input(const SDL_Event& event, SimulationState& state, Uint32& last_time) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
             // ================= GENERAL CONTROLS =================
@@ -104,6 +125,11 @@ void handle_input(const SDL_Event& event, SimulationState& state) {
             // [ M ] - decrease grid cell size (min 5)
             case SDLK_m:                     
                 simulation_config.GRID_CELL_SIZE = std::max(5.0f, simulation_config.GRID_CELL_SIZE - simulation_config.GRID_CELL_SIZE_STEP);
+                break;
+            // [ SPACE ] - reset simulation 
+            case SDLK_SPACE:
+                reset_simulation(state);
+                last_time = SDL_GetTicks(); // reset last time to prevent large dt jump
                 break;
             // ================= SPEED CONTROLS =================
             // [ + ] - increase speed    
@@ -234,7 +260,7 @@ int main() {
                 running = false;
             }
             // handle other input
-            handle_input(event, state);
+            handle_input(event, state, last);
         }
 
         if (simulation_config.PAUSED) {
