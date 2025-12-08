@@ -7,7 +7,43 @@
 #include <iostream>
 using namespace std;
 
+
+void handle_input(const SDL_Event& event, bool& paused, bool& show_stats, float& speed_multiplier) {
+    if (event.type == SDL_KEYDOWN) {
+        switch (event.key.keysym.sym) {
+            // [ P ] - pause/unpause      
+            case SDLK_p:                     
+                paused = !paused;
+                std::cout << (paused ? "Simulation Paused\n" : "Simulation Resumed\n");
+                break;
+             // [ D ] - show/hide stats 
+            case SDLK_d:                         
+                show_stats = !show_stats;
+                std::cout << (show_stats ? "Showing Stats\n" : "Hiding Stats\n");
+                break;          
+            // [ + ] - increase speed    
+            case SDLK_PLUS: 
+            case SDLK_EQUALS:                     
+                speed_multiplier += 0.1f;
+                std::cout << "Speed Multiplier: " << speed_multiplier << "x\n";
+                break;
+            // [ - ] - decrease speed
+            case SDLK_MINUS:                    
+                speed_multiplier = std::max(0.1f, speed_multiplier - 0.1f);
+                std::cout << "Speed Multiplier: " << speed_multiplier << "x\n";
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 int main() {
+
+    // game parameters 
+    bool paused = false; 
+    bool show_stats = false; 
+    float speed_multiplier = 1.0f;
 
     // initialize the renderer
     std::cout << "Initializing Renderer...\n" ;
@@ -49,16 +85,25 @@ int main() {
 
     std::cout << "\n\nStarting Simulation...\n" ;
     while (running) {
-        
-        while (SDL_PollEvent(&event)) {
+        // handle events
+        while (SDL_PollEvent(&event)) { 
             // handle quit event
-            if (event.type == SDL_QUIT) {
+            if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)) {
                 running = false;
             }
+            // handle other input
+            handle_input(event, paused, show_stats, speed_multiplier);
         }
+
+        if (paused) {
+            // SDL_Delay(10); // sleep to reduce CPU usage when paused
+            last = SDL_GetTicks(); // reset last time to prevent large dt jump
+            continue;
+        }
+
         // calc the timestep
         Uint32 now = SDL_GetTicks();
-        float dt = ((now - last) / 1000.0f) * simulation_config.SPEED_UP_RATE; // delta time in seconds
+        float dt = ((now - last) / 1000.0f) * simulation_config.SPEED_UP_RATE * speed_multiplier; // delta time in seconds
         // std::cout << "\tdt = " << dt << "\n";
         last = now;
         // update simulation

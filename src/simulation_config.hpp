@@ -8,8 +8,8 @@ settings for the simulation
 
 struct SimulationConfig {
     // boid behavior parameters
-    int NUM_BOIDS = 5000;
-    float MAX_SPEED = 2.50f;
+    int NUM_BOIDS = 1000;
+    float MAX_SPEED = 5.0f;
     // float SPEED_UP_RATE = 3.0f;
     float SPEED_UP_RATE = 8.0f;
     float PERCEPTION_RADIUS = 40.0f;

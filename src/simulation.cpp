@@ -106,11 +106,17 @@ void Simulation::update(SimulationState& state, float dt) {
         new_boids[i].y += new_boids[i].vy * dt;
 
         // wrap around screen edges
-        if (new_boids[i].x < 0) {  // if to left of screen, wrap to right
+        if (new_boids[i].x < 0) {                               // if to left of screen, wrap to right
             new_boids[i].x += simulation_config.WINDOW_WIDTH;
         }
         if (new_boids[i].x >= simulation_config.WINDOW_WIDTH) { // if to right of screen, wrap to left
             new_boids[i].x -= simulation_config.WINDOW_WIDTH;
+        }
+        if (new_boids[i].y < 0) {                               // if above screen, wrap to bottom
+            new_boids[i].y += simulation_config.WINDOW_HEIGHT;
+        }
+        if (new_boids[i].y >= simulation_config.WINDOW_HEIGHT) { // if below screen, wrap to top
+            new_boids[i].y -= simulation_config.WINDOW_HEIGHT;
         }
     }
     // update the simulation state with new boid positions and velocities
