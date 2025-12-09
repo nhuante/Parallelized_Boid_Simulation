@@ -127,6 +127,15 @@ void reset_simulation(SimulationState& state) {
         // make sure simulation is not paused 
         simulation_config.PAUSED = false;
     }
+
+    // reset any stats 
+    simulation_stats.frame_time_ms = 0.0f;
+    simulation_stats.update_time_ms = 0.0f;
+    simulation_stats.neighbor_time_ms = 0.0f;
+    simulation_stats.total_neighbor_checks = 0;
+    simulation_stats.avg_neighbors = 0.0f;
+    simulation_stats.fps = 0.0f;
+    print_simulation_controls_and_state();
 }
 
 
