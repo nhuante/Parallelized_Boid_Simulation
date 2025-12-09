@@ -8,12 +8,23 @@ CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj: \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_platform.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/begin_code.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/close_code.h \
- c:\mingw\include\sdkddkver.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\stddef.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\stdarg.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\stdint.h \
- c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
- c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ C:/mingw32/i686-w64-mingw32/include/winsdkver.h \
+ C:/mingw32/i686-w64-mingw32/include/winapifamily.h \
+ C:/mingw32/i686-w64-mingw32/include/sdkddkver.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/stddef.h \
+ C:/mingw32/i686-w64-mingw32/include/stddef.h \
+ C:/mingw32/i686-w64-mingw32/include/crtdefs.h \
+ C:/mingw32/i686-w64-mingw32/include/corecrt.h \
+ C:/mingw32/i686-w64-mingw32/include/_mingw.h \
+ C:/mingw32/i686-w64-mingw32/include/_mingw_mac.h \
+ C:/mingw32/i686-w64-mingw32/include/_mingw_secapi.h \
+ C:/mingw32/i686-w64-mingw32/include/vadefs.h \
+ C:/mingw32/i686-w64-mingw32/include/sdks/_mingw_ddk.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/stdarg.h \
+ C:/mingw32/i686-w64-mingw32/include/stdarg.h \
+ C:/mingw32/i686-w64-mingw32/include/_mingw_stdarg.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/stdint.h \
+ C:/mingw32/i686-w64-mingw32/include/stdint.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_assert.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_atomic.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_audio.h \
@@ -21,50 +32,137 @@ CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj: \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_endian.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_mutex.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_thread.h \
- c:\mingw\include\process.h c:\mingw\include\sys\types.h \
- c:\mingw\include\stdint.h \
+ C:/mingw32/i686-w64-mingw32/include/process.h \
+ C:/mingw32/i686-w64-mingw32/include/corecrt_startup.h \
+ C:/mingw32/i686-w64-mingw32/include/sys/types.h \
+ C:/mingw32/i686-w64-mingw32/include/_mingw_off_t.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_rwops.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_clipboard.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_cpuinfo.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\immintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\mmintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\xmmintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\mm_malloc.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\stdlib.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\cstdlib \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\mingw32\bits\c++config.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\mingw32\bits\os_defines.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\mingw32\bits\cpu_defines.h \
- c:\mingw\include\stdlib.h c:\mingw\include\errno.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\emmintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\pmmintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\tmmintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\smmintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\popcntintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\wmmintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avxintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx2intrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512fintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512erintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512pfintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512cdintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512vlintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512bwintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512dqintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512vlbwintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512vldqintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512ifmaintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512ifmavlintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512vbmiintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\avx512vbmivlintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\shaintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\lzcntintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\bmiintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\bmi2intrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\fmaintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\f16cintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\rtmintrin.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\xtestintrin.h \
+ C:/mingw32/i686-w64-mingw32/include/intrin.h \
+ C:/mingw32/i686-w64-mingw32/include/setjmp.h \
+ C:/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/c++/stdlib.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/c++/cstdlib \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/c++/i686-w64-mingw32/bits/c++config.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/c++/i686-w64-mingw32/bits/os_defines.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/c++/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/c++/pstl/pstl_config.h \
+ C:/mingw32/i686-w64-mingw32/include/stdlib.h \
+ C:/mingw32/i686-w64-mingw32/include/corecrt_wstdlib.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/limits.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/syslimits.h \
+ C:/mingw32/i686-w64-mingw32/include/limits.h \
+ C:/mingw32/i686-w64-mingw32/include/sec_api/stdlib_s.h \
+ C:/mingw32/i686-w64-mingw32/include/malloc.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/mm_malloc.h \
+ C:/mingw32/i686-w64-mingw32/include/errno.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/c++/bits/std_abs.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/x86intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/x86gprintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/ia32intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/adxintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/bmiintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/bmi2intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/cetintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/cldemoteintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/clflushoptintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/clwbintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/clzerointrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/cmpccxaddintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/enqcmdintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/fxsrintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/lzcntintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/lwpintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/movdirintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/mwaitintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/mwaitxintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/pconfigintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/popcntintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/pkuintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/prfchiintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/raointintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/rdseedintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/rtmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/serializeintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/sgxintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/tbmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/tsxldtrkintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/uintrintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/waitpkgintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/wbnoinvdintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/xsaveintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/xsavecintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/xsaveoptintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/xsavesintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/xtestintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/hresetintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/usermsrintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/immintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/mmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/xmmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/emmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/pmmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/tmmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/smmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/wmmintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avxintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avxvnniintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avxifmaintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avxvnniint8intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avxvnniint16intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx2intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512fintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512erintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512pfintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512cdintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512bwintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512dqintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vlbwintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vldqintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512ifmaintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512ifmavlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vbmiintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vbmivlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx5124fmapsintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx5124vnniwintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vpopcntdqintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vbmi2intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vbmi2vlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vnniintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vnnivlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vpopcntdqvlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512bitalgintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512bitalgvlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vp2intersectintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512vp2intersectvlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512fp16intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512fp16vlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/shaintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/sm3intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/sha512intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/sm4intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/fmaintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/f16cintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/gfniintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/vaesintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/vpclmulqdqintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512bf16vlintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avx512bf16intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/avxneconvertintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/amxtileintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/amxint8intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/amxbf16intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/amxcomplexintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/prfchwintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/keylockerintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/amxfp16intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/mm3dnow.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/fma4intrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/ammintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/xopintrin.h \
+ C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/include/cpuid.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_events.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_video.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_pixels.h \

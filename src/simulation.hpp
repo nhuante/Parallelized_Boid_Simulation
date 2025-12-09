@@ -15,13 +15,14 @@ class Simulation {
         SimulationState state;
         NeighborSearchType neighbor_search_type = NeighborSearchType::NAIIVE; // will default to Naiive search first
         NeighborSearch* neighbor_search = nullptr;
-        
+
 
     public:
         Simulation(NeighborSearch* ns) : neighbor_search(ns) {}
         void change_neighbor_search_type(NeighborSearch* ns) {
             neighbor_search = ns;
         }
+        void update_void(int index, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, int& total_neighbor_checks, float dt);
         void update(SimulationState& state, float dt);
 
 };

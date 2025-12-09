@@ -76,90 +76,90 @@ CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj: CMakeFiles/BoidsSim.dir/includes_C
 CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj: C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/renderer.cpp
 CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj: CMakeFiles/BoidsSim.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\renderer.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\renderer.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\renderer.cpp
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\renderer.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\renderer.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\renderer.cpp
 
 CMakeFiles/BoidsSim.dir/src/renderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BoidsSim.dir/src/renderer.cpp.i"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\renderer.cpp > CMakeFiles\BoidsSim.dir\src\renderer.cpp.i
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\renderer.cpp > CMakeFiles\BoidsSim.dir\src\renderer.cpp.i
 
 CMakeFiles/BoidsSim.dir/src/renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BoidsSim.dir/src/renderer.cpp.s"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\renderer.cpp -o CMakeFiles\BoidsSim.dir\src\renderer.cpp.s
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\renderer.cpp -o CMakeFiles\BoidsSim.dir\src\renderer.cpp.s
 
 CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj: CMakeFiles/BoidsSim.dir/flags.make
 CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj: CMakeFiles/BoidsSim.dir/includes_CXX.rsp
 CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj: C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_config.cpp
 CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj: CMakeFiles/BoidsSim.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\simulation_config.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\simulation_config.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_config.cpp
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\simulation_config.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\simulation_config.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_config.cpp
 
 CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.i"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_config.cpp > CMakeFiles\BoidsSim.dir\src\simulation_config.cpp.i
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_config.cpp > CMakeFiles\BoidsSim.dir\src\simulation_config.cpp.i
 
 CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.s"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_config.cpp -o CMakeFiles\BoidsSim.dir\src\simulation_config.cpp.s
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_config.cpp -o CMakeFiles\BoidsSim.dir\src\simulation_config.cpp.s
 
 CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj: CMakeFiles/BoidsSim.dir/flags.make
 CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj: CMakeFiles/BoidsSim.dir/includes_CXX.rsp
 CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj: C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.cpp
 CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj: CMakeFiles/BoidsSim.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\simulation_stats.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\simulation_stats.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_stats.cpp
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\simulation_stats.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\simulation_stats.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_stats.cpp
 
 CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.i"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_stats.cpp > CMakeFiles\BoidsSim.dir\src\simulation_stats.cpp.i
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_stats.cpp > CMakeFiles\BoidsSim.dir\src\simulation_stats.cpp.i
 
 CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.s"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_stats.cpp -o CMakeFiles\BoidsSim.dir\src\simulation_stats.cpp.s
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_stats.cpp -o CMakeFiles\BoidsSim.dir\src\simulation_stats.cpp.s
 
 CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj: CMakeFiles/BoidsSim.dir/flags.make
 CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj: CMakeFiles/BoidsSim.dir/includes_CXX.rsp
 CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj: C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation.cpp
 CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj: CMakeFiles/BoidsSim.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\simulation.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\simulation.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation.cpp
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\simulation.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\simulation.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation.cpp
 
 CMakeFiles/BoidsSim.dir/src/simulation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BoidsSim.dir/src/simulation.cpp.i"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation.cpp > CMakeFiles\BoidsSim.dir\src\simulation.cpp.i
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation.cpp > CMakeFiles\BoidsSim.dir\src\simulation.cpp.i
 
 CMakeFiles/BoidsSim.dir/src/simulation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BoidsSim.dir/src/simulation.cpp.s"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation.cpp -o CMakeFiles\BoidsSim.dir\src\simulation.cpp.s
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation.cpp -o CMakeFiles\BoidsSim.dir\src\simulation.cpp.s
 
 CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj: CMakeFiles/BoidsSim.dir/flags.make
 CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj: CMakeFiles/BoidsSim.dir/includes_CXX.rsp
 CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj: C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/grid_neighbor_search.cpp
 CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj: CMakeFiles/BoidsSim.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\grid_neighbor_search.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\grid_neighbor_search.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\grid_neighbor_search.cpp
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\grid_neighbor_search.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\grid_neighbor_search.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\grid_neighbor_search.cpp
 
 CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.i"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\grid_neighbor_search.cpp > CMakeFiles\BoidsSim.dir\src\grid_neighbor_search.cpp.i
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\grid_neighbor_search.cpp > CMakeFiles\BoidsSim.dir\src\grid_neighbor_search.cpp.i
 
 CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.s"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\grid_neighbor_search.cpp -o CMakeFiles\BoidsSim.dir\src\grid_neighbor_search.cpp.s
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\grid_neighbor_search.cpp -o CMakeFiles\BoidsSim.dir\src\grid_neighbor_search.cpp.s
 
 CMakeFiles/BoidsSim.dir/src/main.cpp.obj: CMakeFiles/BoidsSim.dir/flags.make
 CMakeFiles/BoidsSim.dir/src/main.cpp.obj: CMakeFiles/BoidsSim.dir/includes_CXX.rsp
 CMakeFiles/BoidsSim.dir/src/main.cpp.obj: C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/main.cpp
 CMakeFiles/BoidsSim.dir/src/main.cpp.obj: CMakeFiles/BoidsSim.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\natal\Documents\Parallelized_Boid_Simulation\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/BoidsSim.dir/src/main.cpp.obj"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/main.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\main.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\main.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\main.cpp
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BoidsSim.dir/src/main.cpp.obj -MF CMakeFiles\BoidsSim.dir\src\main.cpp.obj.d -o CMakeFiles\BoidsSim.dir\src\main.cpp.obj -c C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\main.cpp
 
 CMakeFiles/BoidsSim.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BoidsSim.dir/src/main.cpp.i"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\main.cpp > CMakeFiles\BoidsSim.dir\src\main.cpp.i
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\main.cpp > CMakeFiles\BoidsSim.dir\src\main.cpp.i
 
 CMakeFiles/BoidsSim.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BoidsSim.dir/src/main.cpp.s"
-	C:\MinGW\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\main.cpp -o CMakeFiles\BoidsSim.dir\src\main.cpp.s
+	C:\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\main.cpp -o CMakeFiles\BoidsSim.dir\src\main.cpp.s
 
 # Object files for target BoidsSim
 BoidsSim_OBJECTS = \
@@ -182,6 +182,8 @@ BoidsSim.exe: CMakeFiles/BoidsSim.dir/src/main.cpp.obj
 BoidsSim.exe: CMakeFiles/BoidsSim.dir/build.make
 BoidsSim.exe: C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/lib/libSDL2main.a
 BoidsSim.exe: C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/lib/libSDL2.dll.a
+BoidsSim.exe: C:/mingw32/lib/gcc/i686-w64-mingw32/14.3.0/libgomp.dll.a
+BoidsSim.exe: C:/mingw32/i686-w64-mingw32/lib/libmingwthrd.a
 BoidsSim.exe: CMakeFiles/BoidsSim.dir/linkLibs.rsp
 BoidsSim.exe: CMakeFiles/BoidsSim.dir/objects1.rsp
 BoidsSim.exe: CMakeFiles/BoidsSim.dir/link.txt

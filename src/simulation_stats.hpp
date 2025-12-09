@@ -9,7 +9,8 @@ struct SimulationStats {
     float percent_update_time = 0.0f;
     float percent_render_time = 0.0f;
 
-    float neighbor_time_ms = 0.0f;
+    float grid_map_hash_time_ms = 0.0f;
+    float get_neighbors_calc_time_ms = 0.0f;
     int total_neighbor_checks = 0;
     float avg_neighbors = 0.0f;
 

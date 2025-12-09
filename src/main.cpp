@@ -49,54 +49,65 @@ void print_simulation_controls_and_state() {
     std::cout << "============================================================= \n";
 
     if (simulation_config.SIMULATION_TYPE_GRID){
-        std::cout << ("   NEIGHBOR SEARCH TYPE: [GRID]");
+        std::cout << ("   NEIGHBOR SEARCH TYPE: [GRID]  ");
     } else {
         std::cout << ("   NEIGHBOR SEARCH TYPE: [NAIIVE]");
     }
 
-    if (simulation_config.PAUSED){
-        std::cout << ("  STATE: [PAUSED]\n");
+    if (simulation_config.PARALLELISM_ENABLED){
+        std::cout << ("   PARALLELISM: [ENABLED] \n\n");
     } else {
-        std::cout << ("  STATE: [RUNNING]\n");
+        std::cout << ("   PARALLELISM: [DISABLED]\n\n");
+    }
+
+    if (simulation_config.PAUSED){
+        std::cout << ("   STATE: [PAUSED] ");
+    } else {
+        std::cout << ("   STATE: [RUNNING]");
     }
     
     if (simulation_config.SHOW_STATS){
         std::cout << ("   STATS: [VISIBLE]");
     } else {
-        std::cout << ("   STATS: [HIDDEN]");
+        std::cout << ("   STATS: [HIDDEN] ");
     }
     if (simulation_config.SHOW_GRID){
         std::cout << ("   GRID: [VISIBLE]\n");
     } else {
-        std::cout << ("   GRID: [HIDDEN]\n");
+        std::cout << ("   GRID: [HIDDEN] \n");
     }
 
-    std::cout << "=============================================================             \n";
-    std::cout << "                   CURRENT Simulation State                               \n";
-    std::cout << "=============================================================             \n";
-    std::cout << "Number of Boids......" << simulation_config.NUM_BOIDS << "                \n";
-    std::cout << "Boid Speed..........." << simulation_config.SPEED << "x                   \n";
-    std::cout << "Perception Radius...." << simulation_config.PERCEPTION_RADIUS << "        \n\n";
+    std::cout << "=============================================================                  \n";
+    std::cout << "                    SIMULATION STATE                                           \n";
+    std::cout << "=============================================================                  \n";
+    if (simulation_config.PARALLELISM_ENABLED){
+    std::cout << "Number of Threads........" << simulation_config.PARALLELISM_NUM_THREADS << "   \n";
+    }
+    std::cout << "Number of Boids........." << simulation_config.NUM_BOIDS << "                  \n";
+    std::cout << "Boid Speed.............." << simulation_config.SPEED << "x                     \n";
+    std::cout << "Perception Radius......." << simulation_config.PERCEPTION_RADIUS << "          \n\n";
 
-    std::cout << "Alignment Weight....." << simulation_config.ALIGNMENT_WEIGHT << "         \n";
-    std::cout << "Cohesion Weight......" << simulation_config.COHESION_WEIGHT << "          \n";
-    std::cout << "Separation Weight...." << simulation_config.SEPARATION_WEIGHT << "        \n\n";
+    std::cout << "Alignment Weight........" << simulation_config.ALIGNMENT_WEIGHT << "           \n";
+    std::cout << "Cohesion Weight........." << simulation_config.COHESION_WEIGHT << "            \n";
+    std::cout << "Separation Weight......." << simulation_config.SEPARATION_WEIGHT << "          \n\n";
 
-    std::cout << "Grid Cell Size......." << simulation_config.GRID_CELL_SIZE << "           \n";
-    std::cout << "=============================================================             \n";
+    std::cout << "Grid Cell Size.........." << simulation_config.GRID_CELL_SIZE << "             \n";
+    std::cout << "=============================================================                  \n";
 
-    std::cout << "                   CURRENT Simulation Stats                               \n";
-    std::cout << "=============================================================             \n";
+    std::cout << "                         STATS                                            \n";
+    std::cout << "=============================================================                  \n";
     std::cout << "FPS....................." << simulation_stats.fps << "                    \n\n";
 
     std::cout << "Last Frame Time........." << simulation_stats.frame_time_ms << " ms       \n";
     std::cout << "Update Time............." << simulation_stats.update_time_ms << " ms   (" << simulation_stats.percent_update_time << "%)      \n";
     std::cout << "Render Time............." << simulation_stats.render_time_ms << " ms   (" << simulation_stats.percent_render_time << "%)      \n\n";
 
-    std::cout << "Neighbor Calc Time......" << simulation_stats.neighbor_time_ms << " ms    \n";  // time taken to compute who is neighbor to whom ??
-    std::cout << "Total Neighbor Checks..." << simulation_stats.total_neighbor_checks << "  \n";  // total number of neighbor checks this frame ??
-    std::cout << "Avg Checked Neighbors..." << simulation_stats.avg_checked_neighbors << "   \n"; // average number of boids checked to find neighbors
-    std::cout << "Avg Neighbors/Boid......" << simulation_stats.avg_neighbors << "          \n"; // average number of neighbors per boid (those within perception radius)
+    std::cout << "Grid Map Build Time....." << simulation_stats.grid_map_hash_time_ms << " ms    \n";               // time taken to build the grid map (aka which boids are in which grid cell)
+    std::cout << "Get Neighbors Time......" << simulation_stats.get_neighbors_calc_time_ms << " ms    \n";          // time taken to get neighbors for all boids (whether checking ALL other boids or only those hashed into surrounding grid cells)
+    
+    // std::cout << "Total Neighbor Checks..." << simulation_stats.total_neighbor_checks << "  \n";                    // total number of neighbor checks this frame ??
+    std::cout << "Avg Checked Neighbors..." << simulation_stats.avg_checked_neighbors << "   \n";                   // average number of boids checked to find neighbors
+    std::cout << "Avg Neighbors/Boid......" << simulation_stats.avg_neighbors << "          \n";                    // average number of neighbors per boid (those within perception radius)
     std::cout << "=============================================================             \n";
 }
 
@@ -135,7 +146,7 @@ void reset_simulation(SimulationState& state) {
     // reset any stats 
     simulation_stats.frame_time_ms = 0.0f;
     simulation_stats.update_time_ms = 0.0f;
-    simulation_stats.neighbor_time_ms = 0.0f;
+    simulation_stats.grid_map_hash_time_ms = 0.0f;
     simulation_stats.total_neighbor_checks = 0;
     simulation_stats.avg_neighbors = 0.0f;
     simulation_stats.fps = 0.0f;
@@ -144,6 +155,7 @@ void reset_simulation(SimulationState& state) {
     simulation_stats.render_time_ms = 0.0f;
     simulation_stats.percent_update_time = 0.0f;
     simulation_stats.percent_render_time = 0.0f;
+    simulation_stats.get_neighbors_calc_time_ms = 0.0f;
     print_simulation_controls_and_state();
 }
 
@@ -153,6 +165,11 @@ void handle_input(const SDL_Event& event, SimulationState& state, Uint32& last_t
                   GridNeighborSearch& grid_neighbor_search) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
+            // ================= TOGGLE PARALLELISM =================
+            // [ O ] - toggle parallelism
+            case SDLK_o:
+                simulation_config.PARALLELISM_ENABLED = !simulation_config.PARALLELISM_ENABLED;
+                break;
             // ================= TOGGLE NEIGHBOR SEARCH TYPE =================
             // [ E ] - toggle neighbor search type
             case SDLK_e:
