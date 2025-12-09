@@ -17,29 +17,35 @@ void print_simulation_controls_and_state() {
     system("cls");
     // std::cout << "\033[H\033[J";   // Move cursor home + clear screen (fast, no flicker)
 
-    std::cout << "=============================================================\n";
-    std::cout << "                    Boid Simulation Controls                 \n";
-    std::cout << "=============================================================\n";
-    std::cout << "[ P ] - Pause/Unpause Simulation                             \n";
-    std::cout << "[ Q ] - Show/Hide Simulation Stats                           \n";
-    std::cout << "[ W ] - Toggle Grid Display                                  \n";
-    std::cout << "[ E ] - Toggle Neighbor Search Type (Naiive/Grid)            \n";
-    std::cout << "[ ESC ] - Quit Simulation                                    \n";
-    std::cout << "[ SPACE ] - Reset Simulation                                 \n";
-    std::cout << "=============== Modify Configuration Values==================\n";
-    std::cout << "                 [Increase / Decrease]                       \n";
-    std::cout << "Grid Cell Size                                               \n";
-    std::cout << "    [ J / M ]                                                \n";
-    std::cout << "Boids Speed                                                  \n";
-    std::cout << "    [ + / - ]                                                \n";
-    std::cout << "Boids Count                                                  \n";
-    std::cout << "    [ G / B ]                                                \n";
-    std::cout << "Perception Radius                                            \n";
-    std::cout << "    [ A / Z ]                                                \n";
-    std::cout << "Behavior Weights:                                            \n";
-    std::cout << "  Alignment   Cohesion   Separation                          \n";
-    std::cout << "  [ S / X ]  [ D / C ]   [ F / V ]                           \n";
-    std::cout << "=============================================================\n";
+    std::cout << "============================================================= \n";
+    std::cout << "                    Boid Simulation Controls                  \n";
+    std::cout << "============================================================= \n";
+    std::cout << " Play/Pause                                                   \n";
+    std::cout << "     [ P ]                                                    \n";
+    std::cout << " Show/Hide UI                                                 \n";
+    std::cout << "     [ Q ]                                                    \n";
+    std::cout << " Grid Toggle                                                  \n";
+    std::cout << "     [ W ]                                                    \n";
+    std::cout << " Toggle Neighbor Search Type (Naiive/Grid)                    \n";
+    std::cout << "     [ E ]                                                    \n";
+    std::cout << " Reset Simulation                                             \n";
+    std::cout << "     [ SPACE ]                                                \n";
+    std::cout<< " Quit Simulation                                               \n";
+    std::cout << "     [ ESC ]                                                  \n";
+    std::cout << "=============== Modify Configuration Values===================\n";
+    std::cout << "                 [Increase / Decrease]                        \n";
+    std::cout << " Grid Cell Size                                               \n";
+    std::cout << "     [ J / M ]                                                \n";
+    std::cout << " Boids Speed                                                  \n";
+    std::cout << "     [ + / - ]                                                \n";
+    std::cout << " Boids Count                                                  \n";
+    std::cout << "     [ G / B ]                                                \n";
+    std::cout << " Perception Radius                                            \n";
+    std::cout << "     [ A / Z ]                                                \n";
+    // std::cout << "Behavior Weights:                                            \n";
+    std::cout << " Alignment   Cohesion   Separation                            \n";
+    std::cout << " [ S / X ]   [ D / C ]   [ F / V ]                            \n";
+    std::cout << "============================================================= \n";
 
     if (simulation_config.SIMULATION_TYPE_GRID){
         std::cout << ("   NEIGHBOR SEARCH TYPE: [GRID]");
@@ -67,15 +73,15 @@ void print_simulation_controls_and_state() {
     std::cout << "=============================================================\n";
     std::cout << "                     CURRENT Simulation State                \n";
     std::cout << "=============================================================\n";
-    std::cout << "Number of Boids: " << simulation_config.NUM_BOIDS << "\n";
-    std::cout << "Boid Speed: " << simulation_config.SPEED << "x\n";
-    std::cout << "Perception Radius: " << simulation_config.PERCEPTION_RADIUS << "\n\n";
+    std::cout << "Number of Boids......" << simulation_config.NUM_BOIDS << "\n";
+    std::cout << "Boid Speed..........." << simulation_config.SPEED << "x\n";
+    std::cout << "Perception Radius...." << simulation_config.PERCEPTION_RADIUS << "\n\n";
 
-    std::cout << "Alignment Weight: " << simulation_config.ALIGNMENT_WEIGHT << "\n";
-    std::cout << "Cohesion Weight: " << simulation_config.COHESION_WEIGHT << "\n";
-    std::cout << "Separation Weight: " << simulation_config.SEPARATION_WEIGHT << "\n";
+    std::cout << "Alignment Weight....." << simulation_config.ALIGNMENT_WEIGHT << "\n";
+    std::cout << "Cohesion Weight......" << simulation_config.COHESION_WEIGHT << "\n";
+    std::cout << "Separation Weight...." << simulation_config.SEPARATION_WEIGHT << "\n\n";
 
-    std::cout << "\nGrid Cell Size: " << simulation_config.GRID_CELL_SIZE << "\n";
+    std::cout << "Grid Cell Size......." << simulation_config.GRID_CELL_SIZE << "\n";
     std::cout << "=============================================================\n";
 }
 
