@@ -26,6 +26,8 @@ std::vector<int> GridNeighborSearch::get_neighbors(const std::vector<Boid>& boid
 
     std::vector<int> neighbors;
 
+    last_checked_candidates = 0; // reset count
+
     // check only the current cell and the 8 neighboring cells for boids within range
     for (int other_grid_cell_Xoffset = -1; other_grid_cell_Xoffset <= 1; other_grid_cell_Xoffset++) {
         for (int other_grid_cell_Yoffset = -1; other_grid_cell_Yoffset <= 1; other_grid_cell_Yoffset++) {
@@ -43,7 +45,8 @@ std::vector<int> GridNeighborSearch::get_neighbors(const std::vector<Boid>& boid
             // only iterate through the birds in the cell to check distance
             for (int boid_index_in_cell : cell_boids) {
                 if (boid_index_in_cell == index) continue; // skip self
-                simulation_stats.checked_neighbors_this_frame++;
+                // simulation_stats.checked_neighbors_this_frame++;
+                last_checked_candidates++;
 
                 const Boid& other_boid = boids[boid_index_in_cell];
 

@@ -13,6 +13,7 @@ using namespace std;
 class NeighborSearch {
     public:
         virtual ~NeighborSearch() = default; 
+        long long last_checked_candidates = 0;
 
         // each derived class will need to implement a search for the boids nearby a given boid
         virtual std::vector<int> get_neighbors(const std::vector<Boid>& boids, 

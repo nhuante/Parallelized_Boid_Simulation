@@ -22,7 +22,7 @@ class Simulation {
         void change_neighbor_search_type(NeighborSearch* ns) {
             neighbor_search = ns;
         }
-        void update_void(int index, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, int& total_neighbor_checks, float dt);
+        void update_void(int index, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, long long& total_checked_candidates, long long& total_neighbors_found, float dt);
         void update(SimulationState& state, float dt);
 
 };

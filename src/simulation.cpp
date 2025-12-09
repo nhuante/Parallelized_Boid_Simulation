@@ -6,7 +6,7 @@
 #include "simulation_stats.hpp"
 #include <cmath>
 #include <SDL.h>
-
+#include <iostream>
 
 static void limit_speed(Boid& boid) {
     float speed = std::sqrt(boid.vx * boid.vx + boid.vy * boid.vy);
@@ -16,8 +16,8 @@ static void limit_speed(Boid& boid) {
     }
 }
 
-void Simulation::update_void(int i, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, int& total_neighbor_checks, float dt) {
-    const Boid& boid = boids[i];
+void Simulation::update_void(int i, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, long long& checked_candidates, long long& neighbors_found ,float dt) {
+    const Boid& boid = boids[i];   
     // ================= GET NEIGHBORS START =================
     Uint64 ns_start_time = SDL_GetPerformanceCounter();
     std::vector<int> neighbors = neighbor_search->get_neighbors(boids, i);
@@ -25,8 +25,10 @@ void Simulation::update_void(int i, const std::vector<Boid>& boids, std::vector<
     simulation_stats.get_neighbors_calc_time_ms = (ns_end_time - ns_start_time) * 1000.0f / SDL_GetPerformanceFrequency();
     // ================= GET NEIGHBORS END =================
 
-    // TRACK NEIGHBOR STATS 
-    total_neighbor_checks += neighbors.size();
+    // track total neighbor checks and found neighbors
+    checked_candidates = neighbor_search->last_checked_candidates;
+    neighbors_found = neighbors.size();
+    
 
     // initial steering shifts 
     float steer_x = 0.0f;
@@ -121,8 +123,14 @@ void Simulation::update_void(int i, const std::vector<Boid>& boids, std::vector<
 
 
 void Simulation::update(SimulationState& state, float dt) {
+    // Completely disable OpenMP influence in serial mode
+    // if (!simulation_config.PARALLELISM_ENABLED) {
+    //     simulation_config.PARALLELISM_NUM_THREADS = 1;
+    //     omp_set_num_threads(1);
+    // }
+
     std::vector<Boid> boids = state.boids;
-    simulation_stats.checked_neighbors_this_frame = 0;
+
     
     // ================= CALCULATE NEIGHBORS START =================
     Uint64 start_time = SDL_GetPerformanceCounter();
@@ -132,7 +140,8 @@ void Simulation::update(SimulationState& state, float dt) {
     // ================= CALCULATE NEIGHBORS END =================
 
     std::vector<Boid> new_boids = boids; // copy current boids to update to prevent weird results
-    int total_neighbor_checks = 0;
+    long long total_checked_candidates = 0;
+    long long total_neighbors_found = 0;
 
     if (simulation_config.PARALLELISM_ENABLED) {
         #pragma omp parallel 
@@ -143,9 +152,14 @@ void Simulation::update(SimulationState& state, float dt) {
             simulation_config.PARALLELISM_NUM_THREADS = omp_get_num_threads();
 
             // for each boid, compute the new velocity based on neighbors (we can split this computation across threads)
-            #pragma omp for schedule(dynamic)
+            #pragma omp for schedule(dynamic) reduction(+:total_checked_candidates, total_neighbors_found)
             for (int i = 0; i < boids.size(); i++) {
-                update_void(i, boids, new_boids, total_neighbor_checks, dt);
+                long long checked = 0;
+                long long found = 0;
+                update_void(i, boids, new_boids, checked, found, dt);
+                
+                total_checked_candidates += checked;
+                total_neighbors_found += found;
             }
             // ================ PARALLEL VERSION END ================
         }
@@ -155,14 +169,32 @@ void Simulation::update(SimulationState& state, float dt) {
         simulation_config.PARALLELISM_NUM_THREADS = 1;
         // for each boid, compute the new velocity based on neighbors
         for (int i = 0; i < boids.size(); i++) {
-            update_void(i, boids, new_boids, total_neighbor_checks, dt);
+            long long checked = 0; 
+            long long found = 0;
+
+            update_void(i, boids, new_boids, checked, found, dt);
+
+            total_checked_candidates += checked;
+            total_neighbors_found += found;
          }
         // ================ SERIAL VERSION END ================
     }
 
     // after all boids updated, update stats
-    simulation_stats.total_neighbor_checks = total_neighbor_checks;
-    simulation_stats.avg_neighbors = (total_neighbor_checks) / boids.size();
+    simulation_stats.total_checked_candidates = total_checked_candidates;
+    simulation_stats.total_neighbors_found = total_neighbors_found;
+
+    simulation_stats.avg_checked_neighbors = static_cast<float>(total_checked_candidates) / static_cast<float>(boids.size());
+    simulation_stats.avg_neighbors = static_cast<float>(total_neighbors_found) / static_cast<float>(boids.size());
+
+    
     // update the simulation state with new boid positions and velocities
     state.boids = new_boids;
+    // std::cout << "DEBUG: N=" << boids.size()
+    //       << " total_checked=" << total_checked_candidates
+    //       << " avg_checked=" << simulation_stats.avg_checked_neighbors
+    //       << " total_neighbors=" << total_neighbors_found
+    //       << " avg_neighbors=" << simulation_stats.avg_neighbors
+    //       << "\n";
+
 }

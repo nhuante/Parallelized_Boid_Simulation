@@ -14,7 +14,8 @@ struct SimulationStats {
     int total_neighbor_checks = 0;
     float avg_neighbors = 0.0f;
 
-    int checked_neighbors_this_frame = 0; 
+    int total_checked_candidates = 0;
+    int total_neighbors_found = 0;
     float avg_checked_neighbors = 0.0f;
 
     float fps = 0.0f;

@@ -80,9 +80,9 @@ void print_simulation_controls_and_state() {
     std::cout << "=============================================================                  \n";
     std::cout << "                    SIMULATION STATE                                           \n";
     std::cout << "=============================================================                  \n";
-    if (simulation_config.PARALLELISM_ENABLED){
+    // if (simulation_config.PARALLELISM_ENABLED){
     std::cout << "Number of Threads........" << simulation_config.PARALLELISM_NUM_THREADS << "   \n";
-    }
+    // }
     std::cout << "Number of Boids........." << simulation_config.NUM_BOIDS << "                  \n";
     std::cout << "Boid Speed.............." << simulation_config.SPEED << "x                     \n";
     std::cout << "Perception Radius......." << simulation_config.PERCEPTION_RADIUS << "          \n\n";
@@ -115,7 +115,7 @@ void maybe_print_state(Uint64& last_print) {
     // check if any values in simulation_config have changed 
     // or if no print in the last 3 seconds
     Uint32 current_time = SDL_GetTicks();
-    if ((simulation_config != last_simulation_config) || (current_time - last_print > 3000)) {
+    if ((simulation_config != last_simulation_config) || (current_time - last_print > 2000)) {
         print_simulation_controls_and_state();
         // update last known config
         last_simulation_config = simulation_config;
@@ -150,7 +150,6 @@ void reset_simulation(SimulationState& state) {
     simulation_stats.total_neighbor_checks = 0;
     simulation_stats.avg_neighbors = 0.0f;
     simulation_stats.fps = 0.0f;
-    simulation_stats.checked_neighbors_this_frame = 0;
     simulation_stats.avg_checked_neighbors = 0.0f;
     simulation_stats.render_time_ms = 0.0f;
     simulation_stats.percent_update_time = 0.0f;
@@ -407,8 +406,7 @@ int main() {
         simulation_stats.percent_update_time = (simulation_stats.update_time_ms / simulation_stats.frame_time_ms) * 100.0f;
         simulation_stats.percent_render_time = (simulation_stats.render_time_ms / simulation_stats.frame_time_ms) * 100.0f;
         // update neighbor stats
-        simulation_stats.avg_checked_neighbors = (simulation_stats.avg_checked_neighbors + simulation_stats.checked_neighbors_this_frame) / 2.0f;
-
+        // simulation_stats.total_neighbor_checks = sim.neighbor_search->last_total_checked_neighbors;
         // ===================== FPS CALCULATION START ================
         simulation_stats.fps = 1000.0f / simulation_stats.frame_time_ms;
         // ===================== FPS CALCULATION END ================

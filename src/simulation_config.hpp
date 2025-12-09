@@ -10,7 +10,7 @@ settings for the simulation
 struct SimulationConfig {
 
     // NUMBER OF BOIDS 
-    int NUM_BOIDS = 1000;
+    int NUM_BOIDS = 500;
     int NUM_BOIDS_STEP = 100;
 
     /* ================= BOID MOVEMENT PARAMETERS ================= */
