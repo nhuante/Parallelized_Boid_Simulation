@@ -327,6 +327,7 @@ int main() {
     SDL_Event event;
     Uint32 last = SDL_GetTicks();
     Uint64 last_print_time = SDL_GetTicks();
+    bool pause_single_frame = false;
 
 
     std::cout << "\n\nStarting Simulation...\n" ;
@@ -346,10 +347,16 @@ int main() {
         }
 
         if (simulation_config.PAUSED) {
+            if (!pause_single_frame) {
+                renderer.render(state.boids, simulation_config.BACKGROUND_COLOR, simulation_config.BOID_COLOR);
+                pause_single_frame = true;
+            }
             // SDL_Delay(10); // sleep to reduce CPU usage when paused
             last = SDL_GetTicks(); // reset last time to prevent large dt jump
             continue;
         }
+
+        pause_single_frame = false;
 
         // ================= SIMULATION UPDATE START =================
         Uint64 update_frame_start_time = SDL_GetPerformanceCounter();
