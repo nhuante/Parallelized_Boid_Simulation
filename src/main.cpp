@@ -3,6 +3,7 @@
 #include "renderer.hpp"
 #include "simulation.hpp"
 #include "naiive_neighbor_search.hpp"
+#include "grid_neighbor_search.hpp"
 
 #include <iostream>
 using namespace std;
@@ -22,6 +23,8 @@ void print_simulation_controls_and_state() {
     std::cout << "[ P ] - Pause/Unpause Simulation\n";
     std::cout << "[ Q ] - Show/Hide Simulation Stats\n";
     std::cout << "[ W ] - Toggle Grid Display\n";
+    std::cout << "[ E ] - Toggle Neighbor Search Type (Naiive/Grid)\n";
+    std::cout << "=============== Modify Configuration Values==================\n";
     std::cout << "[ J ] - Increase Grid Cell Size\n";
     std::cout << "[ M ] - Decrease Grid Cell Size\n";
     std::cout << "[ + ] - Increase Boid Speed\n";
@@ -40,16 +43,22 @@ void print_simulation_controls_and_state() {
     std::cout << "[ SPACE ] - Reset Simulation\n";
     std::cout << "=============================================================\n";
 
-    if (simulation_config.PAUSED){
-        std::cout << (" [SIMULATION PAUSED]");
+    if (simulation_config.SIMULATION_TYPE_GRID){
+        std::cout << ("[GRID BASED NEIGHBOR SEARCH]");
     } else {
-        std::cout << (" [SIMULATION RUNNING]");
+        std::cout << ("[NAIIVE NEIGHBOR SEARCH]");
+    }
+
+    if (simulation_config.PAUSED){
+        std::cout << (" [PAUSED]\n");
+    } else {
+        std::cout << ("[ RUNNING]\n");
     }
     
     if (simulation_config.SHOW_STATS){
-        std::cout << (" [STATS VISIBLE]");
+        std::cout << ("[STATS VISIBLE]");
     } else {
-        std::cout << (" [STATS HIDDEN]");
+        std::cout << ("[STATS HIDDEN]");
     }
     if (simulation_config.SHOW_GRID){
         std::cout << (" [GRID VISIBLE]\n");
@@ -103,10 +112,24 @@ void reset_simulation(SimulationState& state) {
 }
 
 
-void handle_input(const SDL_Event& event, SimulationState& state, Uint32& last_time) {
+void handle_input(const SDL_Event& event, SimulationState& state, Uint32& last_time, Simulation& sim, NeighborSearch*& neighbor_search,
+                  NaiiveNeighborSearch& naiive_neighbor_search,
+                  GridNeighborSearch& grid_neighbor_search) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
             // ================= GENERAL CONTROLS =================
+            // [ E ] - toggle neighbor search type
+            case SDLK_e:
+                // update neighbor search type in the simultion config
+                simulation_config.SIMULATION_TYPE_GRID = !simulation_config.SIMULATION_TYPE_GRID;
+                // update neighbor search algorithm used in simulation
+                if (simulation_config.SIMULATION_TYPE_GRID) {
+                    neighbor_search = &grid_neighbor_search;
+                } else {
+                    neighbor_search = &naiive_neighbor_search;
+                }
+                sim.change_neighbor_search_type(neighbor_search);
+                break;
             // [ P ] - pause/unpause      
             case SDLK_p:                     
                 simulation_config.PAUSED = !simulation_config.PAUSED;
@@ -239,8 +262,11 @@ int main() {
     std::cout << "Done\n" ;
 
     // create neighbor search algorithm
-    NaiiveNeighborSearch neighbor_search;
-    Simulation sim(&neighbor_search);
+    NaiiveNeighborSearch naiive_neighbor_search;
+    GridNeighborSearch grid_neighbor_search;
+    // default to naiive search
+    NeighborSearch* neighbor_search = &naiive_neighbor_search;
+    Simulation sim(neighbor_search);
 
     // main loop
     bool running = true;
@@ -261,7 +287,7 @@ int main() {
                 running = false;
             }
             // handle other input
-            handle_input(event, state, last);
+            handle_input(event, state, last, sim, neighbor_search, naiive_neighbor_search, grid_neighbor_search);
         }
 
         if (simulation_config.PAUSED) {

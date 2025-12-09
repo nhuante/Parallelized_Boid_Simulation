@@ -53,6 +53,9 @@ struct SimulationConfig {
     bool PAUSED = false;
     bool SHOW_STATS = false;
 
+    // false = Naiive, true = Grid
+    bool SIMULATION_TYPE_GRID = false;
+
 
     /* ================= COMPARISON OPERATORS ================= */
     bool operator==(const SimulationConfig& other) const {
@@ -76,7 +79,8 @@ struct SimulationConfig {
                GRID_CELL_SIZE == other.GRID_CELL_SIZE &&
                PAUSED == other.PAUSED &&
                SHOW_STATS == other.SHOW_STATS &&
-               SHOW_GRID == other.SHOW_GRID
+               SHOW_GRID == other.SHOW_GRID && 
+               SIMULATION_TYPE_GRID == other.SIMULATION_TYPE_GRID
                ;
     }
 
