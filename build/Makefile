@@ -248,6 +248,30 @@ src/simulation_config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.s
 .PHONY : src/simulation_config.cpp.s
 
+src/simulation_stats.obj: src/simulation_stats.cpp.obj
+.PHONY : src/simulation_stats.obj
+
+# target to build an object file
+src/simulation_stats.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj
+.PHONY : src/simulation_stats.cpp.obj
+
+src/simulation_stats.i: src/simulation_stats.cpp.i
+.PHONY : src/simulation_stats.i
+
+# target to preprocess a source file
+src/simulation_stats.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.i
+.PHONY : src/simulation_stats.cpp.i
+
+src/simulation_stats.s: src/simulation_stats.cpp.s
+.PHONY : src/simulation_stats.s
+
+# target to generate assembly for a file
+src/simulation_stats.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.s
+.PHONY : src/simulation_stats.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -272,6 +296,9 @@ help:
 	@echo ... src/simulation_config.obj
 	@echo ... src/simulation_config.i
 	@echo ... src/simulation_config.s
+	@echo ... src/simulation_stats.obj
+	@echo ... src/simulation_stats.i
+	@echo ... src/simulation_stats.s
 .PHONY : help
 
 

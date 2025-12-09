@@ -3,9 +3,9 @@
 
 #include "simulation.hpp"
 #include "simulation_config.hpp"
+#include "simulation_stats.hpp"
 #include <cmath>
-
-
+#include <SDL.h>
 
 
 static void limit_speed(Boid& boid) {
@@ -19,15 +19,23 @@ static void limit_speed(Boid& boid) {
 
 void Simulation::update(SimulationState& state, float dt) {
     std::vector<Boid> boids = state.boids;
-
+    
+    // ================= CALCULATE NEIGHBORS START =================
+    Uint64 start_time = SDL_GetPerformanceCounter();
     neighbor_search->build(boids);
+    Uint64 end_time = SDL_GetPerformanceCounter();
+    simulation_stats.neighbor_time_ms = (end_time - start_time) * 1000.0f / SDL_GetPerformanceFrequency();
+    // ================= CALCULATE NEIGHBORS END =================
 
     std::vector<Boid> new_boids = boids; // copy current boids to update to prevent weird results
+    int total_neighbor_checks = 0;
 
     // for each boid, compute the new velocity based on neighbors
     for (int i = 0; i < boids.size(); i++) {
         const Boid& boid = boids[i];
         std::vector<int> neighbors = neighbor_search->get_neighbors(boids, i);
+        // TRACK NEIGHBOR STATS 
+        total_neighbor_checks += neighbors.size();
 
         // initial steering shifts 
         float steer_x = 0.0f;
@@ -119,6 +127,9 @@ void Simulation::update(SimulationState& state, float dt) {
             new_boids[i].y -= simulation_config.WINDOW_HEIGHT;
         }
     }
+    // after all boids updated, update stats
+    simulation_stats.total_neighbor_checks = total_neighbor_checks;
+    simulation_stats.avg_neighbors = (total_neighbor_checks) / boids.size();
     // update the simulation state with new boid positions and velocities
     state.boids = new_boids;
 }

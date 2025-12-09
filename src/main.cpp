@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include "simulation_config.hpp"
+#include "simulation_stats.hpp"
 #include "renderer.hpp"
 #include "simulation.hpp"
 #include "naiive_neighbor_search.hpp"
@@ -70,27 +71,40 @@ void print_simulation_controls_and_state() {
         std::cout << ("   GRID: [HIDDEN]\n");
     }
 
-    std::cout << "=============================================================\n";
-    std::cout << "                     CURRENT Simulation State                \n";
-    std::cout << "=============================================================\n";
-    std::cout << "Number of Boids......" << simulation_config.NUM_BOIDS << "\n";
-    std::cout << "Boid Speed..........." << simulation_config.SPEED << "x\n";
-    std::cout << "Perception Radius...." << simulation_config.PERCEPTION_RADIUS << "\n\n";
+    std::cout << "=============================================================             \n";
+    std::cout << "                   CURRENT Simulation State                               \n";
+    std::cout << "=============================================================             \n";
+    std::cout << "Number of Boids......" << simulation_config.NUM_BOIDS << "                \n";
+    std::cout << "Boid Speed..........." << simulation_config.SPEED << "x                   \n";
+    std::cout << "Perception Radius...." << simulation_config.PERCEPTION_RADIUS << "        \n\n";
 
-    std::cout << "Alignment Weight....." << simulation_config.ALIGNMENT_WEIGHT << "\n";
-    std::cout << "Cohesion Weight......" << simulation_config.COHESION_WEIGHT << "\n";
-    std::cout << "Separation Weight...." << simulation_config.SEPARATION_WEIGHT << "\n\n";
+    std::cout << "Alignment Weight....." << simulation_config.ALIGNMENT_WEIGHT << "         \n";
+    std::cout << "Cohesion Weight......" << simulation_config.COHESION_WEIGHT << "          \n";
+    std::cout << "Separation Weight...." << simulation_config.SEPARATION_WEIGHT << "        \n\n";
 
-    std::cout << "Grid Cell Size......." << simulation_config.GRID_CELL_SIZE << "\n";
-    std::cout << "=============================================================\n";
+    std::cout << "Grid Cell Size......." << simulation_config.GRID_CELL_SIZE << "           \n";
+    std::cout << "=============================================================             \n";
+
+    std::cout << "                   CURRENT Simulation Stats                               \n";
+    std::cout << "=============================================================             \n";
+    std::cout << "FPS....................." << simulation_stats.fps << "                    \n";
+    std::cout << "Update Time............." << simulation_stats.update_time_ms << " ms      \n";
+    std::cout << "Last Frame Time........." << simulation_stats.frame_time_ms << " ms       \n";
+    std::cout << "Neighbor Calc Time......" << simulation_stats.neighbor_time_ms << " ms    \n";
+    std::cout << "Total Neighbor Checks..." << simulation_stats.total_neighbor_checks << "  \n";
+    std::cout << "Avg Neighbors/Boid......" << simulation_stats.avg_neighbors << "          \n";
+    std::cout << "=============================================================             \n";
 }
 
-void maybe_print_state() {
+void maybe_print_state(Uint64& last_print) {
     // check if any values in simulation_config have changed 
-    if (simulation_config != last_simulation_config) {
+    // or if no print in the last 3 seconds
+    Uint32 current_time = SDL_GetTicks();
+    if ((simulation_config != last_simulation_config) || (current_time - last_print > 3000)) {
         print_simulation_controls_and_state();
         // update last known config
         last_simulation_config = simulation_config;
+        last_print = current_time;
     }
 }
 
@@ -294,13 +308,14 @@ int main() {
     bool running = true;
     SDL_Event event;
     Uint32 last = SDL_GetTicks();
+    Uint64 last_print_time = SDL_GetTicks();
 
 
     std::cout << "\n\nStarting Simulation...\n" ;
     print_simulation_controls_and_state();
     while (running) {
         // update and maybe print state if changed
-        maybe_print_state();
+        maybe_print_state(last_print_time);
 
         // handle events
         while (SDL_PollEvent(&event)) { 
@@ -318,6 +333,8 @@ int main() {
             continue;
         }
 
+        // ================= SIMULATION UPDATE START =================
+        Uint64 update_frame_start_time = SDL_GetPerformanceCounter();
         // calc the timestep
         Uint32 now = SDL_GetTicks();
         float dt = ((now - last) / 1000.0f) * simulation_config.SPEED; // delta time in seconds
@@ -325,9 +342,21 @@ int main() {
         last = now;
         // update simulation
         // std::cout << "Updating...\n";
+        // ------------- Simultation Update Start (Calcs) -------------
+        Uint64 update_start_time = SDL_GetPerformanceCounter();
         sim.update(state, dt);
+        Uint64 update_end_time = SDL_GetPerformanceCounter();
+        simulation_stats.update_time_ms = (update_end_time - update_start_time) * 1000.0f / SDL_GetPerformanceFrequency();
+        // ------------- Simultation Update End (Calcs) -------------
         // render simulation
         renderer.render(state.boids, simulation_config.BACKGROUND_COLOR, simulation_config.BOID_COLOR);
+        Uint64 update_frame_end_time = SDL_GetPerformanceCounter();
+        simulation_stats.frame_time_ms = (update_frame_end_time - update_frame_start_time) * 1000.0f / SDL_GetPerformanceFrequency();
+        // ================= SIMULATION UPDATE END =================
+
+        // ===================== FPS CALCULATION START ================
+        simulation_stats.fps = 1000.0f / simulation_stats.frame_time_ms;
+        // ===================== FPS CALCULATION END ================
     }
     // cleanup
     renderer.cleanup();

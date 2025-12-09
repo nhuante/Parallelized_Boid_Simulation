@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/renderer.cpp" "CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj" "gcc" "CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj.d"
   "C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation.cpp" "CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj" "gcc" "CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj.d"
   "C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_config.cpp" "CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj" "gcc" "CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj.d"
+  "C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.cpp" "CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj" "gcc" "CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

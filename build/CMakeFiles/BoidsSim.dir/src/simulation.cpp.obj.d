@@ -141,4 +141,6 @@ CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj: \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_locale.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_misc.h \
  C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\neighbor_search.hpp \
+ C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_stats.hpp \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\cstdint \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\cmath c:\mingw\include\math.h

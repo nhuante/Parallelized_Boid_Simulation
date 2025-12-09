@@ -251,6 +251,7 @@ CMakeFiles/BoidsSim.dir/src/main.cpp.obj: C:/Users/natal/Documents/Parallelized_
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation.hpp \
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_config.hpp \
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_state.hpp \
+  C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.hpp \
   c:/mingw/include/_mingw.h \
   c:/mingw/include/ctype.h \
   c:/mingw/include/direct.h \
@@ -609,6 +610,7 @@ CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj: C:/Users/natal/Documents/Paralle
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation.hpp \
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_config.hpp \
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_state.hpp \
+  C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.hpp \
   c:/mingw/include/_mingw.h \
   c:/mingw/include/errno.h \
   c:/mingw/include/math.h \
@@ -663,6 +665,7 @@ CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj: C:/Users/natal/Documents/Paralle
   c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/bits/stl_vector.h \
   c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/bits/vector.tcc \
   c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/cmath \
+  c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/cstdint \
   c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/cstdlib \
   c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/debug/assertions.h \
   c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/debug/debug.h \
@@ -802,6 +805,20 @@ CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj: C:/Users/natal/Documents/
   c:/mingw/lib/gcc/mingw32/6.3.0/include/wmmintrin.h \
   c:/mingw/lib/gcc/mingw32/6.3.0/include/xmmintrin.h \
   c:/mingw/lib/gcc/mingw32/6.3.0/include/xtestintrin.h
+
+CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj: C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.cpp \
+  C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.hpp \
+  c:/mingw/include/_mingw.h \
+  c:/mingw/include/msvcrtver.h \
+  c:/mingw/include/sdkddkver.h \
+  c:/mingw/include/stdint.h \
+  c:/mingw/include/w32api.h \
+  c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/cstdint \
+  c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/mingw32/bits/c++config.h \
+  c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/mingw32/bits/cpu_defines.h \
+  c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/mingw32/bits/os_defines.h \
+  c:/mingw/lib/gcc/mingw32/6.3.0/include/stddef.h \
+  c:/mingw/lib/gcc/mingw32/6.3.0/include/stdint.h
 
 
 C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_touch.h:
@@ -1216,6 +1233,8 @@ C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation.hpp:
 
 C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_state.hpp:
 
+C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.hpp:
+
 c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/bits/basic_ios.h:
 
 c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/bits/istream.tcc:
@@ -1239,3 +1258,5 @@ c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/istream:
 c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/ostream:
 
 C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/renderer.cpp:
+
+C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.cpp:

@@ -12,6 +12,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/BoidsSim.dir/src/simulation.cpp.obj.d"
   "CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj"
   "CMakeFiles/BoidsSim.dir/src/simulation_config.cpp.obj.d"
+  "CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj"
+  "CMakeFiles/BoidsSim.dir/src/simulation_stats.cpp.obj.d"
   "libBoidsSim.dll.a"
 )
 

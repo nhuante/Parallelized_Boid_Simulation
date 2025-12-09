@@ -98,6 +98,8 @@ CMakeFiles/BoidsSim.dir/src/main.cpp.obj: \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_locale.h \
  C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_misc.h \
  C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_config.hpp \
+ C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\simulation_stats.hpp \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\cstdint \
  C:\Users\natal\Documents\Parallelized_Boid_Simulation\src\renderer.hpp \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\vector \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\stl_algobase.h \
@@ -161,7 +163,6 @@ CMakeFiles/BoidsSim.dir/src/main.cpp.obj: \
  c:\mingw\include\sys/stat.h c:\mingw\include\io.h \
  c:\mingw\include\time.h c:\mingw\include\locale.h \
  c:\mingw\include\process.h \
- c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\cstdint \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\localefwd.h \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\mingw32\bits\c++locale.h \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\clocale \
