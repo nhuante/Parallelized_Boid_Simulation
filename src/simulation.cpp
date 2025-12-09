@@ -19,6 +19,7 @@ static void limit_speed(Boid& boid) {
 
 void Simulation::update(SimulationState& state, float dt) {
     std::vector<Boid> boids = state.boids;
+    simulation_stats.checked_neighbors_this_frame = 0;
     
     // ================= CALCULATE NEIGHBORS START =================
     Uint64 start_time = SDL_GetPerformanceCounter();

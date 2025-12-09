@@ -56,6 +56,7 @@ CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj: C:/Users/natal/Documen
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/grid_neighbor_search.hpp \
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/neighbor_search.hpp \
   C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_config.hpp \
+  C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.hpp \
   c:/mingw/include/_mingw.h \
   c:/mingw/include/ctype.h \
   c:/mingw/include/direct.h \
@@ -879,8 +880,6 @@ C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_events.h:
 
 C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_filesystem.h:
 
-c:/mingw/include/process.h:
-
 c:/mingw/include/wchar.h:
 
 C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_gamecontroller.h:
@@ -963,6 +962,8 @@ C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_config.hpp:
 
 C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/SDL_version.h:
 
+C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.hpp:
+
 C:/SDL2/SDL2-2.26.5/i686-w64-mingw32/include/SDL2/begin_code.h:
 
 C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/neighbor_search.hpp:
@@ -974,6 +975,8 @@ c:/mingw/include/ctype.h:
 c:/mingw/include/direct.h:
 
 c:/mingw/include/errno.h:
+
+c:/mingw/include/process.h:
 
 c:/mingw/lib/gcc/mingw32/6.3.0/include/mmintrin.h:
 
@@ -1232,8 +1235,6 @@ C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/renderer.hpp:
 C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation.hpp:
 
 C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_state.hpp:
-
-C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.hpp:
 
 c:/mingw/lib/gcc/mingw32/6.3.0/include/c++/bits/basic_ios.h:
 

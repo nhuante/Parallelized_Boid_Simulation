@@ -1,4 +1,5 @@
 #include "grid_neighbor_search.hpp"
+#include "simulation_stats.hpp"
 #include <cmath>
 
 void GridNeighborSearch::build(const std::vector<Boid>& boids) {
@@ -42,6 +43,7 @@ std::vector<int> GridNeighborSearch::get_neighbors(const std::vector<Boid>& boid
             // only iterate through the birds in the cell to check distance
             for (int boid_index_in_cell : cell_boids) {
                 if (boid_index_in_cell == index) continue; // skip self
+                simulation_stats.checked_neighbors_this_frame++;
 
                 const Boid& other_boid = boids[boid_index_in_cell];
 

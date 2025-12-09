@@ -57,6 +57,7 @@ CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj
  C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/grid_neighbor_search.hpp
  C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/neighbor_search.hpp
  C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_config.hpp
+ C:/Users/natal/Documents/Parallelized_Boid_Simulation/src/simulation_stats.hpp
  c:/mingw/include/_mingw.h
  c:/mingw/include/ctype.h
  c:/mingw/include/direct.h

@@ -8,6 +8,7 @@ Naiive Neighbor Search
 #pragma once
 #include "neighbor_search.hpp"
 #include "simulation_config.hpp"
+#include "simulation_stats.hpp"
 #include <cmath>
 using namespace std;
 
@@ -28,6 +29,7 @@ class NaiiveNeighborSearch : public NeighborSearch {
             for (int i = 0; i < boids.size(); ++i) {
                   if (i == boid_index) continue; // skip self
 
+                  simulation_stats.checked_neighbors_this_frame++;
 
                   // calculate distance 
                   float dx = boids[i].x - boid.x;
