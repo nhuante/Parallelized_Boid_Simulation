@@ -22,6 +22,7 @@ add_executable(BoidsSim
     ${SRC_DIR}/renderer.cpp
     ${SRC_DIR}/simulation_config.cpp
     ${SRC_DIR}/simulation.cpp
+    ${SRC_DIR}/grid_neighbor_search.cpp
     ${SRC_DIR}/main.cpp
 )
 

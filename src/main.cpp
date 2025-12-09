@@ -20,50 +20,48 @@ void print_simulation_controls_and_state() {
     std::cout << "=============================================================\n";
     std::cout << "                    Boid Simulation Controls                 \n";
     std::cout << "=============================================================\n";
-    std::cout << "[ P ] - Pause/Unpause Simulation\n";
-    std::cout << "[ Q ] - Show/Hide Simulation Stats\n";
-    std::cout << "[ W ] - Toggle Grid Display\n";
-    std::cout << "[ E ] - Toggle Neighbor Search Type (Naiive/Grid)\n";
+    std::cout << "[ P ] - Pause/Unpause Simulation                             \n";
+    std::cout << "[ Q ] - Show/Hide Simulation Stats                           \n";
+    std::cout << "[ W ] - Toggle Grid Display                                  \n";
+    std::cout << "[ E ] - Toggle Neighbor Search Type (Naiive/Grid)            \n";
+    std::cout << "[ ESC ] - Quit Simulation                                    \n";
+    std::cout << "[ SPACE ] - Reset Simulation                                 \n";
     std::cout << "=============== Modify Configuration Values==================\n";
-    std::cout << "[ J ] - Increase Grid Cell Size\n";
-    std::cout << "[ M ] - Decrease Grid Cell Size\n";
-    std::cout << "[ + ] - Increase Boid Speed\n";
-    std::cout << "[ - ] - Decrease Boid Speed\n";
-    std::cout << "[ A ] - Increase Perception Radius\n";
-    std::cout << "[ R ] - Decrease Perception Radius\n";
-    std::cout << "[ S ] - Increase Alignment Weight (Higher means boids align more)\n";
-    std::cout << "[ X ] - Decrease Alignment Weight\n";
-    std::cout << "[ D ] - Increase Cohesion Weight (Higher means boids pull towards each other more)\n";
-    std::cout << "[ C ] - Decrease Cohesion Weight\n";
-    std::cout << "[ F ] - Increase Separation Weight (Higher means boids avoid each other more)\n";
-    std::cout << "[ V ] - Decrease Separation Weight\n";
-    std::cout << "[ G ] - Increase Number of Boids\n";
-    std::cout << "[ B ] - Decrease Number of Boids\n";
-    std::cout << "[ ESC ] - Quit Simulation\n";
-    std::cout << "[ SPACE ] - Reset Simulation\n";
+    std::cout << "                 [Increase / Decrease]                       \n";
+    std::cout << "Grid Cell Size                                               \n";
+    std::cout << "    [ J / M ]                                                \n";
+    std::cout << "Boids Speed                                                  \n";
+    std::cout << "    [ + / - ]                                                \n";
+    std::cout << "Boids Count                                                  \n";
+    std::cout << "    [ G / B ]                                                \n";
+    std::cout << "Perception Radius                                            \n";
+    std::cout << "    [ A / Z ]                                                \n";
+    std::cout << "Behavior Weights:                                            \n";
+    std::cout << "  Alignment   Cohesion   Separation                          \n";
+    std::cout << "  [ S / X ]  [ D / C ]   [ F / V ]                           \n";
     std::cout << "=============================================================\n";
 
     if (simulation_config.SIMULATION_TYPE_GRID){
-        std::cout << ("[GRID BASED NEIGHBOR SEARCH]");
+        std::cout << ("   NEIGHBOR SEARCH TYPE: [GRID]");
     } else {
-        std::cout << ("[NAIIVE NEIGHBOR SEARCH]");
+        std::cout << ("   NEIGHBOR SEARCH TYPE: [NAIIVE]");
     }
 
     if (simulation_config.PAUSED){
-        std::cout << (" [PAUSED]\n");
+        std::cout << ("  STATE: [PAUSED]\n");
     } else {
-        std::cout << ("[ RUNNING]\n");
+        std::cout << ("  STATE: [RUNNING]\n");
     }
     
     if (simulation_config.SHOW_STATS){
-        std::cout << ("[STATS VISIBLE]");
+        std::cout << ("   STATS: [VISIBLE]");
     } else {
-        std::cout << ("[STATS HIDDEN]");
+        std::cout << ("   STATS: [HIDDEN]");
     }
     if (simulation_config.SHOW_GRID){
-        std::cout << (" [GRID VISIBLE]\n");
+        std::cout << ("   GRID: [VISIBLE]\n");
     } else {
-        std::cout << (" [GRID HIDDEN]\n");
+        std::cout << ("   GRID: [HIDDEN]\n");
     }
 
     std::cout << "=============================================================\n";
@@ -117,23 +115,40 @@ void handle_input(const SDL_Event& event, SimulationState& state, Uint32& last_t
                   GridNeighborSearch& grid_neighbor_search) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
-            // ================= GENERAL CONTROLS =================
+            // ================= TOGGLE NEIGHBOR SEARCH TYPE =================
             // [ E ] - toggle neighbor search type
             case SDLK_e:
                 // update neighbor search type in the simultion config
                 simulation_config.SIMULATION_TYPE_GRID = !simulation_config.SIMULATION_TYPE_GRID;
                 // update neighbor search algorithm used in simulation
-                if (simulation_config.SIMULATION_TYPE_GRID) {
+                if (simulation_config.SIMULATION_TYPE_GRID) { // switch to grid-based search
                     neighbor_search = &grid_neighbor_search;
-                } else {
+                    simulation_config.SHOW_GRID = true; // enable grid display when using grid search
+                    simulation_config.BOID_COLOR = {38, 43, 214, 255}; // blue boids for grid search
+                } else { // switch to naiive search
                     neighbor_search = &naiive_neighbor_search;
+                    simulation_config.SHOW_GRID = false; // disable grid display when using naiive search
+                    simulation_config.BOID_COLOR = {255, 255, 255, 255}; // white boids for naiive search
                 }
                 sim.change_neighbor_search_type(neighbor_search);
                 break;
+            // ================= PAUSE/UNPAUSE TOGGLE =================
             // [ P ] - pause/unpause      
             case SDLK_p:                     
                 simulation_config.PAUSED = !simulation_config.PAUSED;
+                // turn boids gray when paused 
+                if (simulation_config.PAUSED) {
+                    simulation_config.BOID_COLOR = {128, 128, 128, 255}; // gray color when paused
+                } else {
+                    // restore boid color based on neighbor search type
+                    if (simulation_config.SIMULATION_TYPE_GRID) {
+                        simulation_config.BOID_COLOR = {38, 43, 214, 255}; // blue for grid search
+                    } else {
+                        simulation_config.BOID_COLOR = {255, 255, 255, 255}; // white for naiive search
+                    }
+                }
                 break;
+            // ================= UI CONTROLS =================
             // [ Q ] - show/hide stats 
             case SDLK_q:                         
                 simulation_config.SHOW_STATS = !simulation_config.SHOW_STATS;
@@ -150,6 +165,7 @@ void handle_input(const SDL_Event& event, SimulationState& state, Uint32& last_t
             case SDLK_m:                     
                 simulation_config.GRID_CELL_SIZE = std::max(5.0f, simulation_config.GRID_CELL_SIZE - simulation_config.GRID_CELL_SIZE_STEP);
                 break;
+            // ================= RESET SIMULATION =================
             // [ SPACE ] - reset simulation 
             case SDLK_SPACE:
                 reset_simulation(state);
@@ -305,7 +321,7 @@ int main() {
         // std::cout << "Updating...\n";
         sim.update(state, dt);
         // render simulation
-        renderer.render(state.boids);
+        renderer.render(state.boids, simulation_config.BACKGROUND_COLOR, simulation_config.BOID_COLOR);
     }
     // cleanup
     renderer.cleanup();

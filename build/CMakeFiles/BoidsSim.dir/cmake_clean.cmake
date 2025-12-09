@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "BoidsSim.exe"
   "BoidsSim.exe.manifest"
   "BoidsSim.pdb"
+  "CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj"
+  "CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj.d"
   "CMakeFiles/BoidsSim.dir/src/main.cpp.obj"
   "CMakeFiles/BoidsSim.dir/src/main.cpp.obj.d"
   "CMakeFiles/BoidsSim.dir/src/renderer.cpp.obj"

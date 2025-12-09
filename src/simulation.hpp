@@ -15,6 +15,7 @@ class Simulation {
         SimulationState state;
         NeighborSearchType neighbor_search_type = NeighborSearchType::NAIIVE; // will default to Naiive search first
         NeighborSearch* neighbor_search = nullptr;
+        
 
     public:
         Simulation(NeighborSearch* ns) : neighbor_search(ns) {}

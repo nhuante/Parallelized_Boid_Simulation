@@ -9,34 +9,25 @@ and the neighboring grid cells in the simulation
 #pragma once
 #include "neighbor_search.hpp"
 #include "simulation_config.hpp"
+#include <unordered_map>
 #include <cmath>
+using namespace std;
+
 
 
 
 class GridNeighborSearch : public NeighborSearch {
     public:
+        
         // handles building the grid data before neighbors can be queried
-        void build(const std::vector<Boid>& boids) override {}
+        void build(const std::vector<Boid>& boids) override;
+        std::vector<int> get_neighbors(const std::vector<Boid>& boids, int index) override;
 
-        std::vector<int> get_neighbors(const std::vector<Boid>& boids, 
-                                        int boid_index) override {
-                                            // FIXME: TO BE IMPLEMENTED LATER
-            std::vector<int> neighbors;
-            const Boid& boid = boids[boid_index];
+    private:
+        std::unordered_map<long long, std::vector<int>> grid; 
+        // map from cell hash to list of boid indices
 
-            // for every other boid, check if it's within perception radius
-            for (int i = 0; i < boids.size(); ++i) {
-                  if (i == boid_index) continue; // skip self
-
-
-                  // calculate distance 
-                  float dx = boids[i].x - boid.x;
-                  float dy = boids[i].y - boid.y;
-                  float distance = dx*dx + dy*dy; // squared distance
-                  if (distance <= simulation_config.PERCEPTION_RADIUS * simulation_config.PERCEPTION_RADIUS) {
-                      neighbors.push_back(i); // if within perception radius, add to neighbors
-                  }
-            }
-            return neighbors;
+        long long hash_cell(int gx, int gy) const {
+            return (static_cast<long long>(gx) << 32) | static_cast<unsigned int>(gy);
         }
 };

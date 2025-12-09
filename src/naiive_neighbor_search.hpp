@@ -9,6 +9,7 @@ Naiive Neighbor Search
 #include "neighbor_search.hpp"
 #include "simulation_config.hpp"
 #include <cmath>
+using namespace std;
 
 
 

@@ -128,6 +128,30 @@ BoidsSim/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/build
 .PHONY : BoidsSim/fast
 
+src/grid_neighbor_search.obj: src/grid_neighbor_search.cpp.obj
+.PHONY : src/grid_neighbor_search.obj
+
+# target to build an object file
+src/grid_neighbor_search.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.obj
+.PHONY : src/grid_neighbor_search.cpp.obj
+
+src/grid_neighbor_search.i: src/grid_neighbor_search.cpp.i
+.PHONY : src/grid_neighbor_search.i
+
+# target to preprocess a source file
+src/grid_neighbor_search.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.i
+.PHONY : src/grid_neighbor_search.cpp.i
+
+src/grid_neighbor_search.s: src/grid_neighbor_search.cpp.s
+.PHONY : src/grid_neighbor_search.s
+
+# target to generate assembly for a file
+src/grid_neighbor_search.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BoidsSim.dir\build.make CMakeFiles/BoidsSim.dir/src/grid_neighbor_search.cpp.s
+.PHONY : src/grid_neighbor_search.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -233,6 +257,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... BoidsSim
+	@echo ... src/grid_neighbor_search.obj
+	@echo ... src/grid_neighbor_search.i
+	@echo ... src/grid_neighbor_search.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

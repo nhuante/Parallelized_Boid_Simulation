@@ -29,9 +29,9 @@ bool Renderer::init(int width, int height) {
 }
 
 
-void Renderer::render(const std::vector<Boid>& boids) {
+void Renderer::render(const std::vector<Boid>& boids, SDL_Color background_color, SDL_Color boid_color) {
     // clear screen
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // black background
+    SDL_SetRenderDrawColor(renderer, background_color.r, background_color.g, background_color.b, 255); // black background
     SDL_RenderClear(renderer);
 
     // draw each boid [as a rectangle] [NOTE: changed to triangle in draw_boid function]
@@ -53,7 +53,7 @@ void Renderer::render(const std::vector<Boid>& boids) {
     // render boids as triangles
     for (const Boid& boid : boids){
         float angle = atan2(boid.vy, boid.vx) + M_PI / 2.0f; // add 90 degrees to point in direction of velocity
-        SDL_Color color = {255, 255, 255}; // white color
+        SDL_Color color = boid_color; // use passed in boid color
         draw_boid(boid.x, boid.y, angle, color);
     }
 

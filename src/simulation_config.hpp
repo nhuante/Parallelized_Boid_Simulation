@@ -5,6 +5,7 @@ settings for the simulation
 
 
 #pragma once
+#include <SDL.h>
 
 struct SimulationConfig {
 
@@ -35,6 +36,8 @@ struct SimulationConfig {
     /* ================= BOID APPEARANCE PARAMETERS ================= */
     int BOID_WIDTH = 4;
     int BOID_HEIGHT = 4;
+    SDL_Color BOID_COLOR = {255, 255, 255, 255}; // white color
+    SDL_Color BACKGROUND_COLOR = {0, 0, 0, 255}; // black backgrounds
 
     // triangle boid sizes 
     float BOID_TRIANGLE_SIZE = 5.0f;

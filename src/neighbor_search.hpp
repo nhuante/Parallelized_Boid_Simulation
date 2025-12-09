@@ -7,6 +7,7 @@ handles the general interface for neighbor search algorithms
 #pragma once 
 #include <vector>
 #include "boid.hpp"
+using namespace std;
 
 
 class NeighborSearch {
