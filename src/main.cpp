@@ -87,13 +87,16 @@ void print_simulation_controls_and_state() {
 
     std::cout << "                   CURRENT Simulation Stats                               \n";
     std::cout << "=============================================================             \n";
-    std::cout << "FPS....................." << simulation_stats.fps << "                    \n";
-    std::cout << "Update Time............." << simulation_stats.update_time_ms << " ms      \n";
+    std::cout << "FPS....................." << simulation_stats.fps << "                    \n\n";
+
     std::cout << "Last Frame Time........." << simulation_stats.frame_time_ms << " ms       \n";
-    std::cout << "Neighbor Calc Time......" << simulation_stats.neighbor_time_ms << " ms    \n";
-    std::cout << "Total Neighbor Checks..." << simulation_stats.total_neighbor_checks << "  \n";
-    std::cout << "Avg Neighbors/Boid......" << simulation_stats.avg_neighbors << "          \n";
-    std::cout << "Avg Checked Neighbors..." << simulation_stats.avg_checked_neighbors << "   \n";
+    std::cout << "Update Time............." << simulation_stats.update_time_ms << " ms   (" << simulation_stats.percent_update_time << "%)      \n";
+    std::cout << "Render Time............." << simulation_stats.render_time_ms << " ms   (" << simulation_stats.percent_render_time << "%)      \n\n";
+
+    std::cout << "Neighbor Calc Time......" << simulation_stats.neighbor_time_ms << " ms    \n";  // time taken to compute who is neighbor to whom ??
+    std::cout << "Total Neighbor Checks..." << simulation_stats.total_neighbor_checks << "  \n";  // total number of neighbor checks this frame ??
+    std::cout << "Avg Checked Neighbors..." << simulation_stats.avg_checked_neighbors << "   \n"; // average number of boids checked to find neighbors
+    std::cout << "Avg Neighbors/Boid......" << simulation_stats.avg_neighbors << "          \n"; // average number of neighbors per boid (those within perception radius)
     std::cout << "=============================================================             \n";
 }
 
@@ -138,6 +141,9 @@ void reset_simulation(SimulationState& state) {
     simulation_stats.fps = 0.0f;
     simulation_stats.checked_neighbors_this_frame = 0;
     simulation_stats.avg_checked_neighbors = 0.0f;
+    simulation_stats.render_time_ms = 0.0f;
+    simulation_stats.percent_update_time = 0.0f;
+    simulation_stats.percent_render_time = 0.0f;
     print_simulation_controls_and_state();
 }
 
@@ -354,19 +360,30 @@ int main() {
         last = now;
         // update simulation
         // std::cout << "Updating...\n";
+
         // ------------- Simultation Update Start (Calcs) -------------
         Uint64 update_start_time = SDL_GetPerformanceCounter();
         sim.update(state, dt);
         Uint64 update_end_time = SDL_GetPerformanceCounter();
         simulation_stats.update_time_ms = (update_end_time - update_start_time) * 1000.0f / SDL_GetPerformanceFrequency();
         // ------------- Simultation Update End (Calcs) -------------
-        // render simulation
+
+        // ------------- Render Start -------------
+        Uint64 render_start_time = SDL_GetPerformanceCounter();
         renderer.render(state.boids, simulation_config.BACKGROUND_COLOR, simulation_config.BOID_COLOR);
+        Uint64 render_end_time = SDL_GetPerformanceCounter();
+        simulation_stats.render_time_ms = (render_end_time - render_start_time) * 1000.0f / SDL_GetPerformanceFrequency();
+        // ------------- Render End -------------
+
         Uint64 update_frame_end_time = SDL_GetPerformanceCounter();
         simulation_stats.frame_time_ms = (update_frame_end_time - update_frame_start_time) * 1000.0f / SDL_GetPerformanceFrequency();
+        
+        // ================= SIMULATION UPDATE END =================
+        // update percentages 
+        simulation_stats.percent_update_time = (simulation_stats.update_time_ms / simulation_stats.frame_time_ms) * 100.0f;
+        simulation_stats.percent_render_time = (simulation_stats.render_time_ms / simulation_stats.frame_time_ms) * 100.0f;
         // update neighbor stats
         simulation_stats.avg_checked_neighbors = (simulation_stats.avg_checked_neighbors + simulation_stats.checked_neighbors_this_frame) / 2.0f;
-        // ================= SIMULATION UPDATE END =================
 
         // ===================== FPS CALCULATION START ================
         simulation_stats.fps = 1000.0f / simulation_stats.frame_time_ms;
