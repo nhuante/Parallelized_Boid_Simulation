@@ -103,7 +103,7 @@ void print_simulation_controls_and_state() {
     std::cout << "Render Time............." << simulation_stats.render_time_ms << " ms   (" << simulation_stats.percent_render_time << "%)      \n\n";
 
     std::cout << "Grid Map Build Time....." << simulation_stats.grid_map_hash_time_ms << " ms    \n";               // time taken to build the grid map (aka which boids are in which grid cell)
-    std::cout << "Get Neighbors Time......" << simulation_stats.get_neighbors_calc_time_ms << " ms    \n";          // time taken to get neighbors for all boids (whether checking ALL other boids or only those hashed into surrounding grid cells)
+    std::cout << "Get Neighbors Time......" << simulation_stats.get_neighbors_calc_time_ms << " ms    \n\n";          // time taken to get neighbors for all boids (whether checking ALL other boids or only those hashed into surrounding grid cells)
     
     // std::cout << "Total Neighbor Checks..." << simulation_stats.total_neighbor_checks << "  \n";                    // total number of neighbor checks this frame ??
     std::cout << "Avg Checked Neighbors..." << simulation_stats.avg_checked_neighbors << "   \n";                   // average number of boids checked to find neighbors
@@ -164,6 +164,60 @@ void handle_input(const SDL_Event& event, SimulationState& state, Uint32& last_t
                   GridNeighborSearch& grid_neighbor_search) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
+            // ================= CONFIGURATION PRESETS =================
+            /* 
+            the following presets will only affect the number of boids, speed, perception radius, 
+            alignment, cohesion, and separation weights */
+            // [ 0 ] reset to default config
+            case SDLK_0:
+                simulation_config = SimulationConfig(); // reset to default config
+                reset_simulation(state);
+                last_time = SDL_GetTicks(); // reset last time to prevent large dt jump
+                break;
+            // [ 1 ] tight flock (high cohesion, medium separation) (flocks stick strongly together)
+            case SDLK_1:
+                simulation_config.NUM_BOIDS = 1000;
+                simulation_config.SPEED = 5.0f;
+                simulation_config.PERCEPTION_RADIUS = 45.0f;
+                simulation_config.ALIGNMENT_WEIGHT = 0.3f;
+                simulation_config.COHESION_WEIGHT = 0.2f;
+                simulation_config.SEPARATION_WEIGHT = 1.0f;
+                reset_simulation(state);
+                last_time = SDL_GetTicks(); // reset last time to prevent large dt jump
+                break;
+            // [ 2 ] chaotic scatter (high separation, low cohesion) (boids avoid each other strongly, resulting in scattered movement)
+            case SDLK_2:
+                simulation_config.NUM_BOIDS = 1000;
+                simulation_config.SPEED = 7.0f;
+                simulation_config.PERCEPTION_RADIUS = 30.0f;
+                simulation_config.ALIGNMENT_WEIGHT = 0.2f;
+                simulation_config.COHESION_WEIGHT = 0.05f;
+                simulation_config.SEPARATION_WEIGHT = 2.0f;
+                reset_simulation(state);
+                last_time = SDL_GetTicks(); // reset last time to prevent large dt jump
+                break;
+            // [ 3 ] smooth schooling (high alighnment, medium cohesion, low separation) (boids move smoothly in the same direction)
+            case SDLK_3:
+                simulation_config.NUM_BOIDS = 1000;
+                simulation_config.SPEED = 4.0f;
+                simulation_config.PERCEPTION_RADIUS = 50.0f;
+                simulation_config.ALIGNMENT_WEIGHT = 0.5f;
+                simulation_config.COHESION_WEIGHT = 0.15f;
+                simulation_config.SEPARATION_WEIGHT = 0.5f;
+                reset_simulation(state);
+                last_time = SDL_GetTicks(); // reset last time to prevent large dt jump
+                break;
+            // [ 4 ] max load (high number of boids, high speed, medium all weights) (tests performance under heavy load)
+            case SDLK_4:
+                simulation_config.NUM_BOIDS = 5000;
+                simulation_config.SPEED = 20.0f;
+                simulation_config.PERCEPTION_RADIUS = 60.0f;
+                simulation_config.ALIGNMENT_WEIGHT = 0.25f;
+                simulation_config.COHESION_WEIGHT = 0.1f;
+                simulation_config.SEPARATION_WEIGHT = 1.5f;
+                reset_simulation(state);
+                last_time = SDL_GetTicks(); // reset last time to prevent large dt jump
+                break;
             // ================= TOGGLE PARALLELISM =================
             // [ O ] - toggle parallelism
             case SDLK_o:

@@ -16,7 +16,8 @@ static void limit_speed(Boid& boid) {
     }
 }
 
-std::list<long long> Simulation::update_void(int i, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, float dt) {
+// will return three values: total checked candidates, total neighbors found, time taken for get neighbors caclculation
+ std::tuple<long long, long long, float> Simulation::update_void(int i, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, float dt) {
     const Boid& boid = boids[i];   
     long long checked_candidates = 0;
     long long neighbors_found = 0;
@@ -24,9 +25,10 @@ std::list<long long> Simulation::update_void(int i, const std::vector<Boid>& boi
     // ================= GET NEIGHBORS START =================
     Uint64 ns_start_time = SDL_GetPerformanceCounter();
     std::tuple<std::vector<int>, long long> answers = neighbor_search->get_neighbors(boids, i);
+    Uint64 ns_end_time = SDL_GetPerformanceCounter();
     std::vector<int> neighbors = std::get<0>(answers);
     checked_candidates = std::get<1>(answers);
-    Uint64 ns_end_time = SDL_GetPerformanceCounter();
+    float get_neighbors_calc_time_ms = (ns_end_time - ns_start_time) * 1000.0f / SDL_GetPerformanceFrequency();
     // simulation_stats.get_neighbors_calc_time_ms = (ns_end_time - ns_start_time) * 1000.0f / SDL_GetPerformanceFrequency();
     // ================= GET NEIGHBORS END =================
 
@@ -125,7 +127,7 @@ std::list<long long> Simulation::update_void(int i, const std::vector<Boid>& boi
         new_boids[i].y -= simulation_config.WINDOW_HEIGHT;
     }
 
-    return {checked_candidates, neighbors_found};
+    return {checked_candidates, neighbors_found, get_neighbors_calc_time_ms};
 }
 
 
@@ -149,6 +151,8 @@ void Simulation::update(SimulationState& state, float dt) {
     std::vector<Boid> new_boids = boids; // copy current boids to update to prevent weird results
     long long total_checked_candidates = 0;
     long long total_neighbors_found = 0;
+    float temp_get_neighbors_time = 0.0f;
+
 
     if (simulation_config.PARALLELISM_ENABLED) {
         #pragma omp parallel 
@@ -157,32 +161,35 @@ void Simulation::update(SimulationState& state, float dt) {
             // record number of threads used
             #pragma omp master 
             simulation_config.PARALLELISM_NUM_THREADS = omp_get_num_threads();
-
             // for each boid, compute the new velocity based on neighbors (we can split this computation across threads)
-            #pragma omp for schedule(dynamic) reduction(+:total_checked_candidates) reduction(+:total_neighbors_found)
+            #pragma omp for schedule(dynamic) reduction(+:total_checked_candidates) reduction(+:total_neighbors_found) reduction(+:temp_get_neighbors_time)
             for (int i = 0; i < boids.size(); i++) {
                 // long long checked = 0;
                 // long long found = 0;
-                list<long long> answers = update_void(i, boids, new_boids, dt);
+                std::tuple<long long, long long, float> answers = update_void(i, boids, new_boids, dt);
                 // we quickly add to totals using reductions instead of direcctly modifying shared variables
-                total_checked_candidates += answers.front();
-                total_neighbors_found += answers.back();
+                total_checked_candidates += std::get<0>(answers);
+                total_neighbors_found += std::get<1>(answers);
+                temp_get_neighbors_time += std::get<2>(answers);
             }
             // ================ PARALLEL VERSION END ================
         }
+        simulation_stats.get_neighbors_calc_time_ms = temp_get_neighbors_time;
     }
     else {
         // ================ SERIAL VERSION START ================
         simulation_config.PARALLELISM_NUM_THREADS = 1;
+        simulation_stats.get_neighbors_calc_time_ms = 0.0f; // reset for each serial update, should only represent this frame's time
         // for each boid, compute the new velocity based on neighbors
         for (int i = 0; i < boids.size(); i++) {
             // long long checked = 0; 
             // long long found = 0;
 
-            list<long long> answers = update_void(i, boids, new_boids, dt);
+            std::tuple<long long, long long, float> answers = update_void(i, boids, new_boids, dt);
             // we can add to totals since this is serial and no reducations are used
-            total_checked_candidates += answers.front();
-            total_neighbors_found += answers.back();
+            total_checked_candidates += std::get<0>(answers);
+            total_neighbors_found += std::get<1>(answers);
+            simulation_stats.get_neighbors_calc_time_ms += std::get<2>(answers);
          }
         // ================ SERIAL VERSION END ================
     }

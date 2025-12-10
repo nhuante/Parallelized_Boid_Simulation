@@ -10,14 +10,14 @@ settings for the simulation
 struct SimulationConfig {
 
     // NUMBER OF BOIDS 
-    int NUM_BOIDS = 500;
+    int NUM_BOIDS = 1000;
     int NUM_BOIDS_STEP = 100;
 
     /* ================= BOID MOVEMENT PARAMETERS ================= */
     // SPEED 
     float MAX_SPEED = 150.0f;                       // maximum speed a boid can travel
-    float SPEED = 2.0f;                             // INITIAL VALUE, CAN BE CHANGED DURING SIMULATION
-    float SPEED_CHANGE_STEP = 0.5f;                 // amount to increase/decrease speed by
+    float SPEED = 5.0f;                             // INITIAL VALUE, CAN BE CHANGED DURING SIMULATION
+    float SPEED_CHANGE_STEP = 1.0f;                 // amount to increase/decrease speed by
 
     // PERCEPTION RADIUS (INITIAL VALUES, CAN BE CHANGED DURING SIMULATION)
     float PERCEPTION_RADIUS_STEP = 2.0f;            // amount to increase/decrease perception radius by

@@ -24,7 +24,7 @@ class Simulation {
         void change_neighbor_search_type(NeighborSearch* ns) {
             neighbor_search = ns;
         }
-        std::list<long long> update_void(int index, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, float dt);
+        std::tuple<long long, long long, float> update_void(int index, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, float dt);
         void update(SimulationState& state, float dt);
 
 };
