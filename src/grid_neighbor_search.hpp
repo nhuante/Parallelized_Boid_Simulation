@@ -21,7 +21,7 @@ class GridNeighborSearch : public NeighborSearch {
         
         // handles building the grid data before neighbors can be queried
         void build(const std::vector<Boid>& boids) override;
-        std::vector<int> get_neighbors(const std::vector<Boid>& boids, int index) override;
+        std::tuple<std::vector<int>, long long> get_neighbors(const std::vector<Boid>& boids, int index) override;
 
     private:
         std::unordered_map<long long, std::vector<int>> grid; 

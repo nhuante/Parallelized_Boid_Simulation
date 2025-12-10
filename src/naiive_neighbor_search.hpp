@@ -20,17 +20,17 @@ class NaiiveNeighborSearch : public NeighborSearch {
             // Naiive neighbor search does not require any precomputation
         }
 
-        std::vector<int> get_neighbors(const std::vector<Boid>& boids, 
+        std::tuple<std::vector<int>, long long> get_neighbors(const std::vector<Boid>& boids, 
                                         int boid_index) override {
             std::vector<int> neighbors;
             const Boid& boid = boids[boid_index];
-            last_checked_candidates = 0; // reset count
+            long long checked_candidates = 0; // reset count
 
             // for every other boid, check if it's within perception radius
             for (int i = 0; i < boids.size(); ++i) {
                   if (i == boid_index) continue; // skip self
 
-                  last_checked_candidates++;
+                  checked_candidates++;
 
                   // calculate distance 
                   float dx = boids[i].x - boid.x;
@@ -40,6 +40,6 @@ class NaiiveNeighborSearch : public NeighborSearch {
                       neighbors.push_back(i); // if within perception radius, add to neighbors
                   }
             }
-            return neighbors;
+            return {neighbors, checked_candidates};
         }
 };

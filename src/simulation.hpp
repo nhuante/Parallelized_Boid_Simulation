@@ -4,6 +4,8 @@
 #pragma once
 #include "simulation_state.hpp"
 #include "neighbor_search.hpp"
+#include <list>
+using namespace std;
 
 enum class NeighborSearchType {
     NAIIVE,
@@ -22,7 +24,7 @@ class Simulation {
         void change_neighbor_search_type(NeighborSearch* ns) {
             neighbor_search = ns;
         }
-        void update_void(int index, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, long long& total_checked_candidates, long long& total_neighbors_found, float dt);
+        std::list<long long> update_void(int index, const std::vector<Boid>& boids, std::vector<Boid>& new_boids, float dt);
         void update(SimulationState& state, float dt);
 
 };

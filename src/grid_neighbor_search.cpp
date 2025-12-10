@@ -17,7 +17,7 @@ void GridNeighborSearch::build(const std::vector<Boid>& boids) {
 
 
 
-std::vector<int> GridNeighborSearch::get_neighbors(const std::vector<Boid>& boids, int index) {
+std::tuple<std::vector<int>, long long> GridNeighborSearch::get_neighbors(const std::vector<Boid>& boids, int index) {
     const Boid& boid = boids[index];
 
     float perception_radius_sq = simulation_config.PERCEPTION_RADIUS * simulation_config.PERCEPTION_RADIUS;
@@ -26,7 +26,7 @@ std::vector<int> GridNeighborSearch::get_neighbors(const std::vector<Boid>& boid
 
     std::vector<int> neighbors;
 
-    last_checked_candidates = 0; // reset count
+    long long checked_candidates = 0; // reset count
 
     // check only the current cell and the 8 neighboring cells for boids within range
     for (int other_grid_cell_Xoffset = -1; other_grid_cell_Xoffset <= 1; other_grid_cell_Xoffset++) {
@@ -45,8 +45,7 @@ std::vector<int> GridNeighborSearch::get_neighbors(const std::vector<Boid>& boid
             // only iterate through the birds in the cell to check distance
             for (int boid_index_in_cell : cell_boids) {
                 if (boid_index_in_cell == index) continue; // skip self
-                // simulation_stats.checked_neighbors_this_frame++;
-                last_checked_candidates++;
+                checked_candidates++;
 
                 const Boid& other_boid = boids[boid_index_in_cell];
 
@@ -61,7 +60,7 @@ std::vector<int> GridNeighborSearch::get_neighbors(const std::vector<Boid>& boid
             }
         }
     }
-    return neighbors;
+    return {neighbors, checked_candidates};
 
 }
 

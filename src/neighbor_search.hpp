@@ -16,8 +16,8 @@ class NeighborSearch {
         long long last_checked_candidates = 0;
 
         // each derived class will need to implement a search for the boids nearby a given boid
-        virtual std::vector<int> get_neighbors(const std::vector<Boid>& boids, 
-                                                int boid_index) = 0;
+        virtual std::tuple<std::vector<int>, long long> get_neighbors(const std::vector<Boid>& boids, 
+                                                                      int boid_index) = 0;
 
         // called once per simulation step to update grids 
         virtual void build(const std::vector<Boid>& boids) = 0;
